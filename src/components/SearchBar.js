@@ -21,6 +21,36 @@ export default function SearchBar() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
 
+  loadedJobs.forEach((job) => {
+    axios
+      .post(`http://localhost:8080/api/v1/companies`, {
+        name: job.company,
+        websiteLink: job.company_url,
+        companyLogo: job.company_logo,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+
+    if (job.company === "Agiloft Inc")
+      axios
+        .post(
+          `http://localhost:8080/api/v1/companies/092d5d19-7eab-4911-91ee-d933ad28c453/jobs`,
+          {
+            name: job.title,
+            description: job.description,
+            applyLink: job.how_to_apply,
+            type: job.type,
+            location: job.location,
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => console.log(error));
+  });
+
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
