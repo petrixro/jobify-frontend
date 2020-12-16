@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { JobContext } from "./JobsContext";
 import styled from "styled-components";
 import Axios from "axios";
+import JobByCompany from "./JobByCompany.js";
 
 const CompanyImage = styled.img`
   width: 85%;
@@ -17,9 +18,11 @@ const CompanyContainer = styled.div`
 
 const CompanyDetails = (props) => {
   const [companies, setCompanies] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const {
     match: { params },
   } = props;
+  const companyId = params.companyId;
 
   React.useEffect(() => {
     Axios.get("http://localhost:8080/api/v1/companies").then((res) =>
@@ -52,11 +55,12 @@ const CompanyDetails = (props) => {
               <a href={company.websiteLink}>
                 Go to {company.name} official website.
               </a>
+              <JobByCompany companyId={company.id} />
               <div
                 style={{ textAlign: "center", marginTop: "6%" }}
                 className="col-4"
               >
-                {/* <JobImage src={company.logo} alt="" /> */}
+                <CompanyImage src={company.companyLogo} alt="" />
                 <br />
               </div>
             </div>

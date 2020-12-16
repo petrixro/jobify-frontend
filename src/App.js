@@ -11,17 +11,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CompanyDetails from "./components/CompanyDetails";
 
 function App() {
-  const { isLoading } = useAuth0();
-  let { isAuthenticated } = useAuth0();
-
-  if (localStorage.getItem("username")) {
-    isAuthenticated = true;
-  } else {
-    isAuthenticated = false;
-  }
-
-  if (isLoading) return <div>Loading...</div>;
-
   return (
     <div className="App">
       <Router>

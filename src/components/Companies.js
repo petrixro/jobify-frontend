@@ -30,8 +30,7 @@ export default function SearchBar() {
       <CardLinks key={company.id} to={"/company/" + company.id}>
         <div className="card">
           <h6 style={{ width: "50%" }}>{company.name}</h6>
-          {/* <img src={company.logo} alt="" /> */}
-          <p>Job type: {company.description}</p>
+          <img src={company.companyLogo} alt="" />
         </div>
       </CardLinks>
     ));
@@ -41,7 +40,8 @@ export default function SearchBar() {
     setIsLoading(true);
     Axios.get("http://localhost:8080/api/v1/companies").then(
       (res) => setCompanies(res.data),
-      setIsLoading(false)
+      setIsLoading(false),
+      console.log(companies)
     );
 
     const results = companies.filter((company) =>

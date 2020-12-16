@@ -3,6 +3,7 @@ import { JobContext } from "./JobsContext";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const CardLinks = styled(Link)`
   color: black;
