@@ -61,7 +61,7 @@ export default function SearchBar() {
       <CardLinks key={job.id} to={"/job/" + job.id}>
         <div className="card">
           <h6 style={{ width: "50%" }}>{job.companyName}</h6>
-          <img src={job.companyLogo} alt="" />
+          <img src={job.company.companyLogo} alt="" />
           <strong>
             <p>{job.name}</p>
           </strong>
