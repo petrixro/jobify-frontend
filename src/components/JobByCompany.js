@@ -15,9 +15,17 @@ const JobByCompany = (props) => {
 
   return (
     <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-      {jobs.map((job) => (
-        <p key={job.id}>Available jobs: {job.name}</p>
-      ))}
+      <ul>
+        {jobs.map((job) => (
+          <li key={job.id}>
+            <a
+              href={`/companies/${companyId}/jobs/${job.id}`}
+            >
+              {job.name}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

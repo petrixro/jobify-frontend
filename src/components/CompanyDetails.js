@@ -51,16 +51,18 @@ const CompanyDetails = (props) => {
                 <div
                   dangerouslySetInnerHTML={{ __html: company.description }}
                 ></div>
+                Available jobs:
+                <JobByCompany companyId={company.id} />
               </div>
-              <a href={company.websiteLink}>
-                Go to {company.name} official website.
-              </a>
-              <JobByCompany companyId={company.id} />
+              <a href={`/companies/${company.id}/jobs`}>Add new job</a>
               <div
-                style={{ textAlign: "center", marginTop: "6%" }}
-                className="col-4"
+                style={{ textAlign: "left", marginTop: "" }}
+                className="col-3"
               >
                 <CompanyImage src={company.companyLogo} alt="" />
+                <a href={company.websiteLink}>
+                  Go to {company.name} official website.
+                </a>
                 <br />
               </div>
             </div>

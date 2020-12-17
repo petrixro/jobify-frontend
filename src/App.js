@@ -9,6 +9,10 @@ import News from "./components/NewsPage";
 import Companies from "./components/Companies";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CompanyDetails from "./components/CompanyDetails";
+import Register from "./components/Register";
+import AddCompanyForm from "./components/AddCompanyForm";
+import AddJobForm from "./components/AddJobForm";
+import JobPageByCompany from "./components/JobPageByCompany";
 
 function App() {
   return (
@@ -22,7 +26,14 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/news" component={News} />
-            <Route path="/companies" component={Companies} />
+            <Route path="/companies" exact component={Companies} />
+            <Route path="/register" component={Register} />
+            <Route path="/companies/addCompany" component={AddCompanyForm} />
+            <Route path="/companies/:companyId/jobs" component={AddJobForm} />
+            <Route
+              path="/companies/:companyId/jobs/:jobId"
+              component={JobPageByCompany}
+            />
           </Switch>
         </JobProvider>
       </Router>

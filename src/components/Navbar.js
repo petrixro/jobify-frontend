@@ -1,5 +1,5 @@
 import React from "react";
-import Logout from "./Logout";
+import Register from "./Register";
 import Login from "./Login";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
@@ -49,12 +49,24 @@ const Navbar = () => {
                 Companies
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" className="nav-link">
               <Login className="nav-link" />
             </li>
             <li className="nav-item">
-              <Logout className="nav-link" />
+              <a href="/register" className="nav-link">
+                Register
+              </a>
             </li>
+            <li className="nav-item">
+              <a href="/companies/addCompany" className="nav-link">
+                Add a company
+              </a>
+            </li>
+            {/* <li className="nav-item">
+              <a href="/companies/:companyId/jobs" className="nav-link">
+                Add a job
+              </a>
+            </li> */}
           </ul>
           {isAuthenticated && <Link to="/profile">User Profile</Link>}
         </div>

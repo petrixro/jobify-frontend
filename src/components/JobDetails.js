@@ -61,10 +61,9 @@ const JobDetails = (props) => {
                 <JobImage src={job.companyLogo} alt="" />
                 <br />
                 <div style={{ marginTop: "5%" }}>
-                  <h5>How to apply: </h5>
-                  <div
-                    dangerouslySetInnerHTML={{ __html: job.applyLink }}
-                  ></div>
+                  <div>
+                    <a href={job.applyLink}>How to apply</a>
+                  </div>
                 </div>
               </div>
             </div>

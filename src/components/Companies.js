@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ const CardLinks = styled(Link)`
   }
 `;
 
-export default function SearchBar() {
+export default function Companies() {
   const [companies, setCompanies] = useState([]);
 
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -36,19 +36,21 @@ export default function SearchBar() {
     ));
   };
 
-  React.useEffect(() => {
-    setIsLoading(true);
-    Axios.get("http://localhost:8080/api/v1/companies").then(
+  async function getCompanies() {
+    await Axios.get("http://localhost:8080/api/v1/companies").then(
       (res) => setCompanies(res.data),
-      setIsLoading(false),
-      console.log(companies)
+      setIsLoading(false)
     );
+  }
 
+  useEffect(() => {
+    setIsLoading(true);
+    getCompanies();
     const results = companies.filter((company) =>
       company.name.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  }, [searchTerm, companies]);
+  }, [searchTerm]);
 
   const search = (
     <div>
