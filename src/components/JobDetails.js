@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { JobContext } from "./JobsContext";
 import styled from "styled-components";
+import axios from "axios";
 
 const JobImage = styled.img`
   width: 85%;
@@ -20,6 +21,11 @@ const JobDetails = (props) => {
   const {
     match: { params },
   } = props;
+  const jobId = params.JobID;
+
+  function deleteJob() {
+    axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`);
+  }
 
   return (
     <div style={{ marginTop: "10px", marginBottom: "10px" }}>
@@ -60,6 +66,9 @@ const JobDetails = (props) => {
                 <h3>{job.companyName}</h3>
                 <JobImage src={job.companyLogo} alt="" />
                 <br />
+                <button onClick={deleteJob}>
+                  <a href="/">Delete</a>
+                </button>
                 <div style={{ marginTop: "5%" }}>
                   <div>
                     <a href={job.applyLink}>How to apply</a>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { JobContext } from "./JobsContext";
 import styled from "styled-components";
-import Axios from "axios";
+import axios from "axios";
 import JobByCompany from "./JobByCompany.js";
 
 const CompanyImage = styled.img`
@@ -22,13 +22,17 @@ const CompanyDetails = (props) => {
   const {
     match: { params },
   } = props;
-  const companyId = params.companyId;
+  const companyId = params.CompanyId;
 
   React.useEffect(() => {
-    Axios.get("http://localhost:8080/api/v1/companies").then((res) =>
-      setCompanies(res.data)
-    );
+    axios
+      .get("http://localhost:8080/api/v1/companies")
+      .then((res) => setCompanies(res.data));
   }, []);
+
+  function deleteCompany() {
+    axios.delete(`http://localhost:8080/api/v1/companies/${companyId}`);
+  }
 
   return (
     <div style={{ marginTop: "10px", marginBottom: "10px" }}>
@@ -63,6 +67,9 @@ const CompanyDetails = (props) => {
                 <a href={company.websiteLink}>
                   Go to {company.name} official website.
                 </a>
+                <button onClick={deleteCompany}>
+                  <a href="/companies">Delete</a>
+                </button>
                 <br />
               </div>
             </div>

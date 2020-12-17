@@ -80,6 +80,8 @@ export default function Companies() {
 
   return (
     <React.Fragment>
+      <h1>Companies</h1>
+      <hr />
       {search}
       {content}
     </React.Fragment>

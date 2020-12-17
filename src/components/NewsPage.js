@@ -83,8 +83,9 @@ const NewsPage = () => {
   return (
     <React.Fragment>
       <div>
-        {search}
         <h1>News</h1>
+        <hr />
+        {search}
       </div>
       {searchResults.length > 0
         ? displayNews(searchResults)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Axios from "axios";
+import axios from "axios";
 
 const JobImage = styled.img`
   width: 85%;
@@ -25,9 +25,13 @@ const JobPageByCompany = (props) => {
   const companyId = params.companyId;
 
   async function getData() {
-    await Axios.get(
-      `http://localhost:8080/api/v1/companies/${companyId}/jobs/${jobId}`
-    ).then((res) => setJob(res.data));
+    await axios
+      .get(`http://localhost:8080/api/v1/companies/${companyId}/jobs/${jobId}`)
+      .then((res) => setJob(res.data));
+  }
+
+  function deleteJob() {
+    axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`);
   }
 
   useEffect(() => {
@@ -69,6 +73,9 @@ const JobPageByCompany = (props) => {
             <JobImage src={job.companyLogo} alt="" />
             <br />
             <div style={{ marginTop: "5%" }}>
+              <button onClick={deleteJob}>
+                <a href="/companies">Delete</a>
+              </button>
               <div>
                 <a href={job.applyLink}>How to apply</a>
               </div>

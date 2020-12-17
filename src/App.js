@@ -29,7 +29,11 @@ function App() {
             <Route path="/companies" exact component={Companies} />
             <Route path="/register" component={Register} />
             <Route path="/companies/addCompany" component={AddCompanyForm} />
-            <Route path="/companies/:companyId/jobs" component={AddJobForm} />
+            <Route
+              path="/companies/:companyId/jobs"
+              exact
+              component={AddJobForm}
+            />
             <Route
               path="/companies/:companyId/jobs/:jobId"
               component={JobPageByCompany}
