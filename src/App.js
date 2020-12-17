@@ -2,7 +2,6 @@ import "./App.css";
 import Home from "./components/Home";
 import { JobProvider } from "./components/JobsContext";
 import UserProfile from "./components/UserProfile";
-import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "./components/Navbar";
 import JobDetails from "./components/JobDetails";
 import News from "./components/NewsPage";

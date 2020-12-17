@@ -66,8 +66,12 @@ const JobDetails = (props) => {
                 <h3>{job.companyName}</h3>
                 <JobImage src={job.companyLogo} alt="" />
                 <br />
-                <button onClick={deleteJob}>
-                  <a href="/">Delete</a>
+                <button
+                  onClick={deleteJob}
+                  type="button"
+                  className="btn btn-danger"
+                >
+                  <a href="/">Delete job</a>
                 </button>
                 <div style={{ marginTop: "5%" }}>
                   <div>
