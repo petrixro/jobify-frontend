@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import BottomNav from "./BottomNav";
 
 const CardLinks = styled(Link)`
   color: black;
@@ -81,6 +82,7 @@ export default function SearchBar() {
     <React.Fragment>
       {search}
       {content}
+      <BottomNav />
     </React.Fragment>
   );
 }

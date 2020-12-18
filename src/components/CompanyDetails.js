@@ -3,6 +3,8 @@ import { JobContext } from "./JobsContext";
 import styled from "styled-components";
 import axios from "axios";
 import JobByCompany from "./JobByCompany.js";
+import RatingComponent from "./HoverRating.js";
+import HoverRating from "./HoverRating.js";
 
 const CompanyImage = styled.img`
   width: 85%;
@@ -70,6 +72,7 @@ const CompanyDetails = (props) => {
                 <button onClick={deleteCompany}>
                   <a href="/companies">Delete</a>
                 </button>
+                <HoverRating />
                 <br />
               </div>
             </div>
