@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { JobContext } from "./JobsContext";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
@@ -46,18 +46,24 @@ export default function SearchBar() {
   };
 
   React.useEffect(() => {
-    const results = loadedJobs.filter((job) =>
-      job.name.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    const results = loadedJobs.filter(
+      (job) =>
+        job.name.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.location
+          .toString()
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        job.type.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm, loadedJobs]);
 
   const search = (
     <div>
-      <form className="">
+      <form>
         <input
           className="form-control form-control-sm"
-          placeholder="Search by job title"
+          placeholder="Search..."
           onChange={handleChange}
           value={searchTerm}
           type="text"
