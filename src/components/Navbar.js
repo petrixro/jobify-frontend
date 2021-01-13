@@ -19,7 +19,7 @@ const Navbar = () => {
     <React.Fragment>
       <nav className="navbar navbar-expand-lg">
         <a className="navbar-brand" href="/news">
-          <img src="./logo.png" alt="jobify" style={{ width: "150px" }}></img>
+          <img src={process.env.PUBLIC_URL +"/logo.png"} alt="jobify" style={{ width: "150px" }}></img>
         </a>
         <button
           className="navbar-toggler"
