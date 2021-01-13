@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg">
         <a className="navbar-brand" href="/news">
           <img src="./logo.png" alt="jobify" style={{ width: "150px" }}></img>
         </a>
@@ -36,7 +36,7 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item active">
               <a className="nav-link" href="/">
-                Jobs <span className="sr-only">(current)</span>
+                Jobs 
               </a>
             </li>
             <li className="nav-item active">

@@ -14,9 +14,10 @@ export default function Register() {
     });
 
     axios.post("http://localhost:8080/api/v1/users", {
-      username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
+      role: "user",
+      username: data.get("username")
     });
   }
 

@@ -38,9 +38,7 @@ export default function AddJobForm(props) {
       >
         <h2 className="form-signin-heading">Add job</h2>
         <p>
-          <label htmlFor="name" className="sr-only">
-            Company name
-          </label>
+          
           <input
             type="text"
             id="name"
@@ -52,9 +50,7 @@ export default function AddJobForm(props) {
           />
         </p>
         <p>
-          <label htmlFor="desc" className="sr-only">
-            Job description
-          </label>
+          
           <textarea
             type="text"
             id="desc"
@@ -66,9 +62,6 @@ export default function AddJobForm(props) {
           />
         </p>
         <p>
-          <label htmlFor="applyLink" className="sr-only">
-            Job applyLink
-          </label>
           <input
             type="text"
             id="applyLink"
@@ -79,9 +72,6 @@ export default function AddJobForm(props) {
           />
         </p>
         <p>
-          <label htmlFor="type" className="sr-only">
-            Job type
-          </label>
           <input
             type="text"
             id="type"
@@ -92,9 +82,6 @@ export default function AddJobForm(props) {
           />
         </p>
         <p>
-          <label htmlFor="location" className="sr-only">
-            Job location
-          </label>
           <input
             type="text"
             id="location"
