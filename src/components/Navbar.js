@@ -49,8 +49,10 @@ const Navbar = () => {
                 Companies
               </a>
             </li>
-            <li className="nav-item" className="nav-link">
-              <Login className="nav-link" />
+            <li className="nav-item">
+              <a href="/#" className="nav-link">
+                  Login
+              </a>
             </li>
             <li className="nav-item">
               <a href="/register" className="nav-link">
