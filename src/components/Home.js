@@ -5,8 +5,9 @@ import SearchBar from "./SearchBar";
 function Home() {
   return (
     <React.Fragment>
+      <br/>
       <h2>Available Jobs</h2>
-      <Pagination />
+      <br/>
       <SearchBar />
       <Pagination />
     </React.Fragment>

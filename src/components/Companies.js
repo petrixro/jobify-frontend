@@ -57,7 +57,7 @@ export default function Companies() {
       <form className="">
         <input
           className="form-control form-control-sm"
-          placeholder="Search by job title"
+          placeholder="Search Company"
           onChange={handleChange}
           value={searchTerm}
           type="text"

@@ -9,10 +9,10 @@ const JobImage = styled.img`
 `;
 
 const JobContainer = styled.div`
+  padding: 2%;
   text-align: left;
-  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 10px;
-  background-color: aliceblue;
+  background-color: white;
 `;
 
 const JobDetails = (props) => {
@@ -75,7 +75,7 @@ const JobDetails = (props) => {
                 </button>
                 <div style={{ marginTop: "5%" }}>
                   <div>
-                    <a href={job.applyLink}>How to apply</a>
+                    <a href={job.applyLink} target="_blank" rel="noreferrer">How to apply</a>
                   </div>
                 </div>
               </div>

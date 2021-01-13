@@ -7,10 +7,14 @@ import axios from "axios";
 import BottomNav from "./BottomNav";
 
 const CardLinks = styled(Link)`
-  color: black;
+  color: #00b3e2;
+  background-color: white;
   text-decoration: none;
+  border: 1px #00b3e2 solid;
+  border-radius: 10px;
   :hover {
-    color: #00b3e2;
+    color: white;
+    background-color: #00b3e2;
     text-decoration: none;
   }
 `;
@@ -29,10 +33,10 @@ export default function SearchBar() {
 
   const displayJobs = (array) => {
     return array.map((job) => (
-      <CardLinks key={job.id} to={"/job/" + job.id}>
+      
         <div className="card">
-          <h4 style={{ width: "50%" }}>{job.company.name}</h4>
-          <img src={job.company.companyLogo} alt="" />
+          <h4 >{job.company.name}</h4>
+          <img src={job.company.companyLogo} alt=""/>
           <strong>
             <h5>{job.name}</h5>
           </strong>
@@ -40,8 +44,10 @@ export default function SearchBar() {
           <p>
             Job type: <strong style={{ color: "green" }}>{job.type}</strong>
           </p>
+          <CardLinks key={job.id} to={"/job/" + job.id} role="button">Details</CardLinks>
         </div>
-      </CardLinks>
+
+      
     ));
   };
 

@@ -13,9 +13,9 @@ const CompanyImage = styled.img`
 
 const CompanyContainer = styled.div`
   text-align: left;
-  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 10px;
-  background-color: aliceblue;
+  background-color: white;
+  padding: 2%
 `;
 
 const CompanyDetails = (props) => {
@@ -66,7 +66,7 @@ const CompanyDetails = (props) => {
                 className="col-3"
               >
                 <CompanyImage src={company.companyLogo} alt="" />
-                <a href={company.websiteLink}>
+                <a href={company.websiteLink} target="_blank" rel="noreferrer">
                   Go to {company.name} official website.
                 </a>
                 <button onClick={deleteCompany}>
@@ -83,3 +83,4 @@ const CompanyDetails = (props) => {
 };
 
 export default CompanyDetails;
+
