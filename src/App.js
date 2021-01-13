@@ -13,6 +13,7 @@ import AddCompanyForm from "./components/AddCompanyForm";
 import AddJobForm from "./components/AddJobForm";
 import JobPageByCompany from "./components/JobPageByCompany";
 import UserFavoriteJobs from "./components/UserFavoriteJobs";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             />
           </Switch>
         </JobProvider>
+        <Footer />
       </Router>
     </div>
   );

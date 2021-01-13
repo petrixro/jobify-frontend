@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+body{
+background-color: rgb(255, 255, 255);
+padding-top: 0px;
+}
+
 .cardContainer {
   display: flex;
   justify-content: center;
@@ -28,9 +33,24 @@
   padding: 20px;
   font-size: small;
   border-radius: 20px;
-  background-color: whitesmoke;
+  background-color: #eefcff;
   align-items: center;
   grid-template-rows: max-content 150px 1fr;
+  border: none;
+}
+
+.card:hover {
+  background-color: white;
+  box-shadow: 0px -1px 37px -7px #00b5e2;
+  color: black;
+}
+
+.navbar {
+  background-color: #00b5e2;
+}
+
+.card.h4 {
+  text-align: center;
 }
 
 .card img {
@@ -45,13 +65,16 @@
   margin-bottom: 20px;
 }
 
-input {
-  margin-left: 5%;
-  max-width: 90%;
-  margin-top: 30px;
-}
 
 a {
   text-decoration: none;
   color: black;
+}
+
+.nav-link {
+  color: white;
+}
+
+.carousel-inner {
+  margin-bottom: 30px;
 }

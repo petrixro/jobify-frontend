@@ -17,9 +17,9 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg">
         <a className="navbar-brand" href="/news">
-          <img src="./logo.png" alt="jobify" style={{ width: "150px" }}></img>
+          <img src={process.env.PUBLIC_URL +"/logo.png"} alt="jobify" style={{ width: "150px" }}></img>
         </a>
         <button
           className="navbar-toggler"
@@ -36,7 +36,7 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item active">
               <a className="nav-link" href="/">
-                Jobs <span className="sr-only">(current)</span>
+                Jobs 
               </a>
             </li>
             <li className="nav-item active">
@@ -49,8 +49,10 @@ const Navbar = () => {
                 Companies
               </a>
             </li>
-            <li className="nav-item" className="nav-link">
-              <Login className="nav-link" />
+            <li className="nav-item">
+              <a href="/#" className="nav-link">
+                  Login
+              </a>
             </li>
             <li className="nav-item">
               <a href="/register" className="nav-link">
