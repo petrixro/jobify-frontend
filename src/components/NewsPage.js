@@ -69,7 +69,7 @@ const NewsPage = () => {
       <form className="">
         <input
           className="form-control form-control-sm"
-          placeholder="Search..."
+          placeholder="Search in News"
           onChange={handleChange}
           value={searchTerm}
           type="text"
@@ -82,11 +82,17 @@ const NewsPage = () => {
 
   return (
     <React.Fragment>
-      <div>
-        <h1>News</h1>
-        <hr />
-        {search}
-      </div>
+      <div id="carousel2" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="img-fluid" src={process.env.PUBLIC_URL + '/news.jpg'} alt="First slide"/>
+              <div class="carousel-caption">
+                <h1 style={{float: "left"}}>Latest World News</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      {search}
       {searchResults.length > 0
         ? displayNews(searchResults)
         : displayNews(loadedNews)}

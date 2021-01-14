@@ -30,9 +30,6 @@ export default function Register() {
       >
         <h2 className="form-signin-heading">Add your company</h2>
         <p>
-          <label htmlFor="name" className="sr-only">
-            Company name
-          </label>
           <input
             type="text"
             id="name"
@@ -44,9 +41,6 @@ export default function Register() {
           />
         </p>
         <p>
-          <label htmlFor="link" className="sr-only">
-            Company link
-          </label>
           <input
             type="text"
             id="link"
@@ -58,9 +52,6 @@ export default function Register() {
           />
         </p>
         <p>
-          <label htmlFor="logo" className="sr-only">
-            Company logo
-          </label>
           <input
             type="text"
             id="logo"

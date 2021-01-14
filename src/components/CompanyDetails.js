@@ -69,7 +69,7 @@ const CompanyDetails = (props) => {
                 <a href={company.websiteLink}>
                   Go to {company.name} official website.
                 </a>
-                <button onClick={deleteCompany}>
+                <button type="button" class="btn btn-danger" onClick={deleteCompany}>
                   <a href="/companies">Delete</a>
                 </button>
                 <HoverRating />

@@ -37,7 +37,7 @@ export default function SearchBar() {
     return array.map((job) => (
       <CardLinks key={job.id} to={"/job/" + job.id}>
         <div className="card">
-          <h4 style={{ width: "50%" }}>{job.company.name}</h4>
+          <h4>{job.company.name}</h4>
           <img src={job.company.companyLogo} alt="" />
           <strong>
             <h5>{job.name}</h5>
@@ -52,7 +52,7 @@ export default function SearchBar() {
   };
 
   const search = (
-    <div>
+    <div className="container">
       <div className="mb-3">
         <input
           type="text"
@@ -60,7 +60,6 @@ export default function SearchBar() {
           onChange={searchByName}
           placeholder="What job are you looking for?"
         />
-
         <div className="mb-3">
           <select
             aria-label="Select a location..."
