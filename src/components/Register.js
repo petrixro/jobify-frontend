@@ -11,20 +11,25 @@ export default function Register() {
       username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
+      image: data.get("image"),
     });
 
     axios.post("http://localhost:8080/api/v1/users", {
       email: data.get("email"),
       password: data.get("password"),
       role: "user",
-      username: data.get("username")
+      username: data.get("username"),
+      image: data.get("image"),
     });
   }
 
   return (
     <div className="row">
       <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <img className="img-fluid" src={process.env.PUBLIC_URL + '/register.jpg'}/>
+        <img
+          className="img-fluid"
+          src={process.env.PUBLIC_URL + "/register.jpg"}
+        />
       </div>
       <div className="col-lg-6 col-md-12 mb-4 mb-md-0" id="register-form">
         <form
@@ -41,8 +46,8 @@ export default function Register() {
               name="username"
               className="form-control"
               placeholder="Username"
-              required=""
-              autoFocus=""
+              required
+              autoFocus
             />
           </p>
           <p>
@@ -52,8 +57,8 @@ export default function Register() {
               name="email"
               className="form-control"
               placeholder="Email"
-              required=""
-              autoFocus=""
+              required
+              autoFocus
             />
           </p>
           <p>
@@ -63,10 +68,23 @@ export default function Register() {
               name="password"
               className="form-control"
               placeholder="Password"
-              required=""
+              required
             />
           </p>
-          <button className="btn btn-lg btn-primary btn-block" type="submit">
+          <p>
+            <input
+              type="text"
+              id="image"
+              name="image"
+              className="form-control"
+              placeholder="image"
+              required
+            />
+          </p>
+          <button
+            className="btn btn-lg btn-primary btn-block mt-3"
+            type="submit"
+          >
             Sign up
           </button>
         </form>

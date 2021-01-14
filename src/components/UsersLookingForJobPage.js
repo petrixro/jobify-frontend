@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Container from "@material-ui/core/Container";
 
 const CardLinks = styled(Link)`
   color: black;
@@ -25,18 +26,18 @@ export default function UsersLookingForJobPage() {
   const displayUsers = (array) => {
     return array.map((user) => (
       <CardLinks key={user.id} to={"/users/" + user.id}>
-        <div className="card">
+        <div className="card mt-3">
           <h4 style={{ width: "50%" }}>{user.username}</h4>
           <img src={user.image} alt="" />
           <strong>
             <h5>{user.email}</h5>
           </strong>
-          <p>Experience level: {console.log(user)}</p>
+          <p>Experience level: {user.experience}</p>
           <p></p>
         </div>
       </CardLinks>
     ));
   };
 
-  return <div>{displayUsers(users)}</div>;
+  return <Container>{displayUsers(users)}</Container>;
 }

@@ -58,6 +58,12 @@ const Navbar = () => {
                 Companies
               </a>
             </li>
+
+            <li className="nav-item">
+              <a href="/companies/addCompany" className="nav-link">
+                Add a company
+              </a>
+            </li>
             <li className="nav-item">
               <a href="/#" className="nav-link">
                 Login
@@ -68,16 +74,6 @@ const Navbar = () => {
                 Register
               </a>
             </li>
-            <li className="nav-item">
-              <a href="/companies/addCompany" className="nav-link">
-                Add a company
-              </a>
-            </li>
-            {/* <li className="nav-item">
-              <a href="/companies/:companyId/jobs" className="nav-link">
-                Add a job
-              </a>
-            </li> */}
           </ul>
           {isAuthenticated && <Link to="/profile">User Profile</Link>}
         </div>

@@ -32,9 +32,9 @@ export default function UserFavoriteJobs(props) {
   return (
     <div>
       <h1>My favorite jobs</h1>
-      {favorites.length > 0
-        ? favorites.map((f) => (
-            <div className="cards">
+      <div className="cards">
+        {favorites.length > 0
+          ? favorites.map((f) => (
               <CardLinks key={f.id} to={"/job/" + f.id}>
                 <div className="card">
                   <h4 style={{ width: "50%" }}>{f.company.name}</h4>
@@ -49,9 +49,9 @@ export default function UserFavoriteJobs(props) {
                   </p>
                 </div>
               </CardLinks>
-            </div>
-          ))
-        : "Empty"}
+            ))
+          : "Empty"}
+      </div>
     </div>
   );
 }

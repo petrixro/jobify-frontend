@@ -19,16 +19,16 @@ export default function AddJobForm(props) {
     e.preventDefault();
     const data = new FormData(e.target);
     setJob({
-      name: data.get("name").toLowerCase(),
-      desc: data.get("desc").toLowerCase(),
+      name: data.get("name"),
+      desc: data.get("desc"),
       applyLink: data.get("applyLink"),
       type: data.get("type"),
       location: data.get("location"),
     });
 
     axios.post(`http://localhost:8080/api/v1/companies/${companyId}/jobs`, {
-      name: data.get("name").toLowerCase(),
-      description: data.get("desc").toLowerCase(),
+      name: data.get("name"),
+      description: data.get("desc"),
       applyLink: data.get("applyLink"),
       type: data.get("type"),
       location: data.get("location"),
