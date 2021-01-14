@@ -88,7 +88,7 @@ export default function SearchBar() {
         >
           See jobs
         </Button>
-      ) : jobName.length > 0 && jobLocation.length == 0 ? (
+      ) : jobName.length > 0 && jobLocation.length === 0 ? (
         <Button
           variant="outlined"
           color="primary"
