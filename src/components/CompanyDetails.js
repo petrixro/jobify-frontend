@@ -13,7 +13,7 @@ const CompanyImage = styled.img`
 
 const CompanyContainer = styled.div`
   text-align: left;
-  padding:1%;
+  padding: 1%;
   border-radius: 10px;
   background-color: aliceblue;
 `;
@@ -42,11 +42,10 @@ const CompanyDetails = (props) => {
         .filter((company) => company.id === params.CompanyId)
         .map((company) => (
           <CompanyContainer className="container">
-            
             <div className="row">
               <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
                 <h1 key={company.id} style={{ marginTop: "2%" }}>
-                {company.name}
+                  {company.name}
                 </h1>
                 <div
                   dangerouslySetInnerHTML={{ __html: company.description }}
@@ -59,13 +58,26 @@ const CompanyDetails = (props) => {
                 className="col-lg-6 col-md-12 mb-4 mb-md-0"
               >
                 <CompanyImage src={company.companyLogo} alt="" />
-                <br/>
+                <br />
                 <a href={company.websiteLink} target="_blank" rel="noreferrer">
                   Go to {company.name} official website.
                 </a>
-                <br/><br/>
-                <a href={`/companies/${company.id}/jobs`} className="btn btn-primary" role="button">Add new job</a><br/><br/>
-                <a href="/companies" className="btn btn-danger" role="button" onClick={deleteCompany}>Delete Company</a><br/><br/>
+                <br />
+                <br />
+                <a
+                  href={`/companies/${company.id}/jobs`}
+                  className="btn btn-primary"
+                  role="button"
+                >
+                  Add new job
+                </a>
+                <br />
+                <br />
+                <button className="btn btn-danger" onClick={deleteCompany}>
+                  Delete Company
+                </button>
+                <br />
+                <br />
                 <b>Company Rating</b>
                 <HoverRating />
                 <br />
