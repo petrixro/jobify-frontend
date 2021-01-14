@@ -19,7 +19,11 @@ const Navbar = () => {
     <React.Fragment>
       <nav className="navbar navbar-expand-lg">
         <a className="navbar-brand" href="/news">
-          <img src={process.env.PUBLIC_URL +"/logo.png"} alt="jobify" style={{ width: "150px" }}></img>
+          <img
+            src={process.env.PUBLIC_URL + "/logo.png"}
+            alt="jobify"
+            style={{ width: "150px" }}
+          ></img>
         </a>
         <button
           className="navbar-toggler"
@@ -36,12 +40,17 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item active">
               <a className="nav-link" href="/">
-                Jobs 
+                Jobs
               </a>
             </li>
             <li className="nav-item active">
               <a className="nav-link" href="/news">
                 News
+              </a>
+            </li>
+            <li className="nav-item active">
+              <a className="nav-link" href="/users/lookingForJob">
+                Developers
               </a>
             </li>
             <li className="nav-item active">
@@ -51,7 +60,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <a href="/#" className="nav-link">
-                  Login
+                Login
               </a>
             </li>
             <li className="nav-item">

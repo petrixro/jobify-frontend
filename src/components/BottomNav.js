@@ -22,7 +22,7 @@ export default function SimpleBottomNavigation() {
   return (
     <div>
       <BottomNavigationAction label="Previous" icon={<ArrowBackIosIcon />} />
-      <a href={`users/d18f7848-56d2-480e-8b5c-cdd3726c0dce/favoriteJobs`}>
+      <a href={`users/91f5d0b2-28f3-4754-beaf-c13af3f12ff2/favoriteJobs`}>
         <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
       </a>
       <BottomNavigationAction label="Previous" icon={<ArrowForwardIosIcon />} />
