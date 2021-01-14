@@ -52,8 +52,12 @@ padding-top: 0px;
   color: black;
 }
 
-.navbar {
-  background-color: #05d3ff;
+
+.nav-link {
+  color: rgb(255, 255, 255) !important;
+}
+.nav-link:hover {
+  color: #00b5e2 !important;
 }
 
 .card.h4 {
