@@ -72,14 +72,20 @@ export default function AddJobForm(props) {
           />
         </p>
         <p>
-          <input
+          {/* <input
             type="text"
             id="type"
             name="type"
             className="form-control"
             placeholder="Fulltime/Parttime"
             required=""
-          />
+          /> */}
+          <select class="form-select" name="type">
+            <option selected value="Fulltime">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Remote">Remote</option>
+            <option value="Project Based">Project Based</option>
+          </select>
         </p>
         <p>
           <input

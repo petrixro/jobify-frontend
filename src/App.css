@@ -39,6 +39,13 @@ padding-top: 0px;
   border: none;
 }
 
+#register-form {
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card:hover {
   background-color: white;
   box-shadow: 0px -1px 37px -7px #00b5e2;
@@ -46,7 +53,7 @@ padding-top: 0px;
 }
 
 .navbar {
-  background-color: #00b5e2;
+  background-color: #05d3ff;
 }
 
 .card.h4 {
@@ -69,6 +76,10 @@ padding-top: 0px;
 a {
   text-decoration: none;
   color: black;
+}
+
+footer {
+  margin-top: 20px;
 }
 
 .nav-link {
