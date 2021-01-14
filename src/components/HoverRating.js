@@ -18,9 +18,9 @@ const labels = {
 
 const useStyles = makeStyles({
   root: {
-    width: 200,
-    display: "flex",
-    alignItems: "center",
+    // width: 200,
+    // display: "flex",
+    // alignItems: "center",
   },
 });
 

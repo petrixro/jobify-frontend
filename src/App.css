@@ -39,7 +39,7 @@ padding-top: 0px;
   border: none;
 }
 
-#register_form {
+#register-form {
   text-align: center;
     display: flex;
     justify-content: center;
@@ -76,6 +76,10 @@ padding-top: 0px;
 a {
   text-decoration: none;
   color: black;
+}
+
+footer {
+  margin-top: 20px;
 }
 
 .nav-link {

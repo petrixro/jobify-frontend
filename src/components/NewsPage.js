@@ -29,7 +29,7 @@ const NewsPage = () => {
             />
             <hr />
             <h5 className="card-title mt-4">
-              <a href={article.url}>{article.title}</a>
+              <a href={article.url} target="_blank" rel="noreferrer">{article.title}</a>
             </h5>
             <p className="card-text">{article.description}</p>
             <p className="card-text">

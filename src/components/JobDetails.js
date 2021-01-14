@@ -4,15 +4,14 @@ import styled from "styled-components";
 import axios from "axios";
 
 const JobImage = styled.img`
-  width: 85%;
-  margin: 5px;
+  width: 10%;
 `;
 
 const JobContainer = styled.div`
   text-align: left;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 1%
   border-radius: 10px;
-  background-color: aliceblue;
+  background-color: #eefcff;
 `;
 
 const JobDetails = (props) => {
@@ -33,16 +32,15 @@ const JobDetails = (props) => {
         .filter((job) => job.id === params.JobID)
         .map((job) => (
           <JobContainer className="container">
+            <div className="row">
+            
             <h1 key={job.id} style={{ marginTop: "2%" }}>
               {job.name}
             </h1>
-            <hr />
-            <div className="row">
-              <div className="col-8">
-                <div
-                  className="row"
-                  style={{ marginBottom: "10px", marginTop: "10px" }}
-                >
+            <JobImage src={job.company.companyLogo} alt="" />
+            <small>Published on {job.publishedDate}</small>
+              <div className="col-8 col-md-12 mb-4 mb-md-0">
+                <div className="row">
                   <div className="col" style={{ marginTop: "5%" }}>
                     <strong>Type: </strong>
                     <h6 style={{ color: "green", display: "inline" }}>
@@ -56,29 +54,25 @@ const JobDetails = (props) => {
                   </div>
                 </div>
                 <div
+                  className="row"
+                  style={{ marginBottom: "10px", marginTop: "10px" }}
+                >
+                <div className="col"
                   dangerouslySetInnerHTML={{ __html: job.description }}
                 ></div>
-              </div>
-              <div
+                <div
                 style={{ textAlign: "center", marginTop: "6%" }}
-                className="col-4"
+                className="col-lg-4 col-md-5 mb-4 mb-md-0"
               >
-                <h3>{job.companyName}</h3>
-                <JobImage src={job.companyLogo} alt="" />
+                {/* <h3>{job.company.name}</h3> */}
+                
                 <br />
-                <button
-                  onClick={deleteJob}
-                  type="button"
-                  className="btn btn-danger"
-                >
-                  <a href="/">Delete job</a>
-                </button>
-                <div style={{ marginTop: "5%" }}>
-                  <div>
-                    <a href={job.applyLink}>How to apply</a>
-                  </div>
-                </div>
+                  <a href="/" className="btn btn-danger" role="button" onClick={deleteJob}>Delete job</a><br /><br />
+                  <a href={job.applyLink} target="_blank" rel="noreferrer" className="btn btn-success" role="button">Apply</a><br /><br />
+                </div>              
               </div>
+              </div>
+              
             </div>
           </JobContainer>
         ))}

@@ -7,13 +7,13 @@ import RatingComponent from "./HoverRating.js";
 import HoverRating from "./HoverRating.js";
 
 const CompanyImage = styled.img`
-  width: 85%;
+  width: 50%;
   margin: 5px;
 `;
 
 const CompanyContainer = styled.div`
   text-align: left;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding:1%;
   border-radius: 10px;
   background-color: aliceblue;
 `;
@@ -42,36 +42,31 @@ const CompanyDetails = (props) => {
         .filter((company) => company.id === params.CompanyId)
         .map((company) => (
           <CompanyContainer className="container">
-            <h1 key={company.id} style={{ marginTop: "2%" }}>
-              {company.name}
-            </h1>
-            <hr />
+            
             <div className="row">
-              <div className="col-8">
-                <div
-                  className="row"
-                  style={{ marginBottom: "10px", marginTop: "10px" }}
-                >
-                  <div className="col" style={{ marginTop: "5%" }}></div>
-                </div>
+              <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h1 key={company.id} style={{ marginTop: "2%" }}>
+                {company.name}
+                </h1>
                 <div
                   dangerouslySetInnerHTML={{ __html: company.description }}
                 ></div>
                 Available jobs:
                 <JobByCompany companyId={company.id} />
               </div>
-              <a href={`/companies/${company.id}/jobs`}>Add new job</a>
               <div
-                style={{ textAlign: "left", marginTop: "" }}
-                className="col-3"
+                style={{ textAlign: "center", marginTop: "" }}
+                className="col-lg-6 col-md-12 mb-4 mb-md-0"
               >
                 <CompanyImage src={company.companyLogo} alt="" />
-                <a href={company.websiteLink}>
+                <br/>
+                <a href={company.websiteLink} target="_blank" rel="noreferrer">
                   Go to {company.name} official website.
                 </a>
-                <button type="button" class="btn btn-danger" onClick={deleteCompany}>
-                  <a href="/companies">Delete</a>
-                </button>
+                <br/><br/>
+                <a href={`/companies/${company.id}/jobs`} className="btn btn-primary" role="button">Add new job</a><br/><br/>
+                <a href="/companies" className="btn btn-danger" role="button" onClick={deleteCompany}>Delete Company</a><br/><br/>
+                <b>Company Rating</b>
                 <HoverRating />
                 <br />
               </div>
