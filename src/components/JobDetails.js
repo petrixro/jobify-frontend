@@ -24,6 +24,7 @@ const JobDetails = (props) => {
 
   function deleteJob() {
     axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`);
+    console.log(jobId);
   }
 
   return (
@@ -33,12 +34,11 @@ const JobDetails = (props) => {
         .map((job) => (
           <JobContainer className="container">
             <div className="row">
-            
-            <h1 key={job.id} style={{ marginTop: "2%" }}>
-              {job.name}
-            </h1>
-            <JobImage src={job.company.companyLogo} alt="" />
-            <small>Published on {job.publishedDate}</small>
+              <h1 key={job.id} style={{ marginTop: "2%" }}>
+                {job.name}
+              </h1>
+              <JobImage src={job.company.companyLogo} alt="" />
+              <small>Published on {job.publishedDate}</small>
               <div className="col-8 col-md-12 mb-4 mb-md-0">
                 <div className="row">
                   <div className="col" style={{ marginTop: "5%" }}>
@@ -57,22 +57,36 @@ const JobDetails = (props) => {
                   className="row"
                   style={{ marginBottom: "10px", marginTop: "10px" }}
                 >
-                <div className="col"
-                  dangerouslySetInnerHTML={{ __html: job.description }}
-                ></div>
-                <div
-                style={{ textAlign: "center", marginTop: "6%" }}
-                className="col-lg-4 col-md-5 mb-4 mb-md-0"
-              >
-                {/* <h3>{job.company.name}</h3> */}
-                
-                <br />
-                  <a href="/" className="btn btn-danger" role="button" onClick={deleteJob}>Delete job</a><br /><br />
-                  <a href={job.applyLink} target="_blank" rel="noreferrer" className="btn btn-success" role="button">Apply</a><br /><br />
-                </div>              
+                  <div
+                    className="col"
+                    dangerouslySetInnerHTML={{ __html: job.description }}
+                  ></div>
+                  <div
+                    style={{ textAlign: "center", marginTop: "6%" }}
+                    className="col-lg-4 col-md-5 mb-4 mb-md-0"
+                  >
+                    {/* <h3>{job.company.name}</h3> */}
+
+                    <br />
+                    <button className="btn btn-danger" onClick={deleteJob}>
+                      Delete job
+                    </button>
+                    <br />
+                    <br />
+                    <a
+                      href={job.applyLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-success"
+                      role="button"
+                    >
+                      Apply
+                    </a>
+                    <br />
+                    <br />
+                  </div>
+                </div>
               </div>
-              </div>
-              
             </div>
           </JobContainer>
         ))}

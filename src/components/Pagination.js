@@ -1,7 +1,23 @@
 import React, { useContext } from "react";
 import { JobContext } from "./JobsContext";
 
+import { makeStyles } from "@material-ui/core/styles";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { Link } from "react-router-dom";
+
+const useStyles = makeStyles({
+  root: {
+    width: "100%",
+  },
+});
+
 function Pagination() {
+  const classes = useStyles();
   const { page } = useContext(JobContext);
   const [pageNumber, setPageNumber] = page;
 
@@ -15,22 +31,21 @@ function Pagination() {
 
   return (
     <div>
-      <button
-        type="button"
-        className="btn btn-light btn-sm btnPage"
+      <BottomNavigationAction
+        label="Previous"
+        icon={<ArrowBackIosIcon />}
         disabled={pageNumber <= 1}
         onClick={prevPage}
-      >
-        Previous
-      </button>
-      <button
-        type="button"
-        className="btn btn-light btn-sm btnPage"
+      />
+      <a href={`users/e205173d-44b9-42ba-a7dc-f9f88b782768/favoriteJobs`}>
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+      </a>
+      <BottomNavigationAction
+        label="Previous"
+        icon={<ArrowForwardIosIcon />}
         disabled={pageNumber >= 4}
         onClick={nextPage}
-      >
-        Next
-      </button>
+      />
     </div>
   );
 }

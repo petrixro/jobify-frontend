@@ -12,16 +12,16 @@ export default function AddJobForm(props) {
     e.preventDefault();
     const data = new FormData(e.target);
     setJob({
-      name: data.get("name"),
-      desc: data.get("desc"),
+      name: data.get("name").toLowerCase(),
+      desc: data.get("desc").toLowerCase(),
       applyLink: data.get("applyLink"),
       type: data.get("type"),
       location: data.get("location"),
     });
 
     axios.post(`http://localhost:8080/api/v1/companies/${companyId}/jobs`, {
-      name: data.get("name"),
-      description: data.get("desc"),
+      name: data.get("name").toLowerCase(),
+      description: data.get("desc").toLowerCase(),
       applyLink: data.get("applyLink"),
       type: data.get("type"),
       location: data.get("location"),
@@ -38,7 +38,6 @@ export default function AddJobForm(props) {
       >
         <h2 className="form-signin-heading">Add job</h2>
         <p>
-          
           <input
             type="text"
             id="name"
@@ -50,7 +49,6 @@ export default function AddJobForm(props) {
           />
         </p>
         <p>
-          
           <textarea
             type="text"
             id="desc"
@@ -81,7 +79,9 @@ export default function AddJobForm(props) {
             required=""
           /> */}
           <select class="form-select" name="type">
-            <option selected value="Fulltime">Full Time</option>
+            <option selected value="Fulltime">
+              Full Time
+            </option>
             <option value="Part Time">Part Time</option>
             <option value="Remote">Remote</option>
             <option value="Project Based">Project Based</option>
