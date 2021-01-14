@@ -15,6 +15,7 @@ import JobPageByCompany from "./components/JobPageByCompany";
 import UserFavoriteJobs from "./components/UserFavoriteJobs";
 import Footer from "./components/Footer";
 import FilteredJobs from "./components/FilteredJobs";
+import UsersLookingForJobPage from "./components/UsersLookingForJobPage";
 
 function App() {
   return (
@@ -32,6 +33,11 @@ function App() {
               path="/users/:userId/favoriteJobs"
               exact
               component={UserFavoriteJobs}
+            />
+            <Route
+              path="/users/lookingForJob"
+              exact
+              component={UsersLookingForJobPage}
             />
             <Route path="/company/:CompanyId" component={CompanyDetails} />
             <Route path="/" exact component={Home} />

@@ -31,7 +31,7 @@ export default function UserFavoriteJobs(props) {
 
   return (
     <div>
-      <h1>Favorite jobs</h1>
+      <h1>My favorite jobs</h1>
       {favorites.length > 0
         ? favorites.map((f) => (
             <div className="cards">
