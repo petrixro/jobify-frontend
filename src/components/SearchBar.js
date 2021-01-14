@@ -80,7 +80,7 @@ export default function SearchBar() {
           )}
         </select>
       </div>
-      {jobLocation.length > 0 && jobName.length == 0 ? (
+      {jobLocation.length > 0 && jobName.length === 0 ? (
         <Button
           variant="outlined"
           color="primary"
