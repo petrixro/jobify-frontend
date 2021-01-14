@@ -9,21 +9,18 @@ const Footer = () => {
                 <div class="container p-4">
                     <div class="row">
                     <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Footer text</h5>
+                        <h5 class="text-uppercase">About us</h5>
                         <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                        aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                        Jobify is the newest job platform specialized in tech jobs.
+                        Here you will find all most wanted jobs!
                         </p>
                     </div>
                
                     <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Footer text</h5>
-
+                    <h5 class="text-uppercase">Find your Dream Job</h5>
                         <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                        aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                        We have become a reference in the Recruitment Industry by 
+                        publishing only Job Offers at more than 3000€ per month.
                         </p>
                     </div>
         
