@@ -52,60 +52,58 @@ export default function SearchBar() {
   };
 
   const search = (
-    <div className="row">
-      <div className="col">
+    <div className="container">
+      <div className="mb-3">
         <input
           type="text"
+          className="form-control"
           onChange={searchByName}
-          className="form-control"
           placeholder="What job are you looking for?"
+          pattern={2}
         />
+        <div className="mb-3">
+          <select
+            aria-label="Select a location..."
+            className="form-select form-select-sm mb-3"
+            aria-label=".form-select-sm example"
+            id="gender"
+            name="gender"
+            onChange={searchByLocation}
+          >
+            <option defaultValue>Search by location...</option>
+            {Array.from(new Set(loadedJobs.map((j) => j.location))).map(
+              (location) => (
+                <option key={location} value={`${location}`}>
+                  {location.toUpperCase()}
+                </option>
+              )
+            )}
+          </select>
+        </div>
       </div>
-      <div className="col">
-        <select
-          aria-label="Select a location..."
-          className="form-control"
-          aria-label=".form-select-sm example"
-          id="gender"
-          name="gender"
-          onChange={searchByLocation}
-        >
-          <option defaultValue>Search by location...</option>
-          {Array.from(new Set(loadedJobs.map((j) => j.location))).map(
-            (location) => (
-              <option key={location} value={`${location}`}>
-                {location.toUpperCase()}
-              </option>
-            )
-          )}
-        </select>
-      </div>
-      {jobLocation.length > 0 && jobName.length === 0 ? (
+      {jobLocation.length > 0? (
         <Button
           variant="outlined"
           color="primary"
           href={`/jobs/name/${"undefined"}/location/${jobLocation}`}
-          style={{ marginTop: "3%" }}
         >
-          See available jobs
+          See jobs
         </Button>
-      ) : jobName.length > 0 && jobLocation.length === 0 ? (
+      ) : jobName.length > 3 && jobLocation.length === 0 ? (
         <Button
           variant="outlined"
           color="primary"
           href={`/jobs/name/${jobName}/location/${"undefined"}`}
-          style={{ marginTop: "3%" }}
         >
-          See available jobs
+          See jobs
         </Button>
-      ) : jobLocation.length > 0 && jobName.length > 0 ? (
+      ) : jobLocation.length > 0 && jobName.length > 3 ? (
         <Button
           variant="outlined"
           color="primary"
           href={`/jobs/name/${jobName}/location/${jobLocation}`}
-          style={{ marginTop: "3%" }}
         >
-          See available jobs
+          See jobs
         </Button>
       ) : (
         ""

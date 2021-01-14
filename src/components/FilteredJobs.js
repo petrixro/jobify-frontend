@@ -46,7 +46,7 @@ export default function FilteredJobs(props) {
     return array.map((job) => (
       <CardLinks key={job.id} to={"/job/" + job.id}>
         <div className="card">
-          <h4 style={{ width: "50%" }}>{job.company.name}</h4>
+          <h4>{job.company.name}</h4>
           <img src={job.company.companyLogo} alt="" />
           <strong>
             <h5>{job.name}</h5>
