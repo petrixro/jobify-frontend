@@ -71,17 +71,17 @@ export default function SearchBar() {
             onChange={searchByLocation}
           >
             <option defaultValue>Search by location...</option>
-            {Array.from(new Set(loadedJobs.map((j) => j.location))).map(
-              (location) => (
-                <option key={location} value={`${location}`}>
-                  {location.toUpperCase()}
-                </option>
-              )
-            )}
+            {Array.from(
+              new Set(loadedJobs.map((j) => j.location.toLowerCase()))
+            ).map((location) => (
+              <option key={location} value={`${location.toLowerCase()}`}>
+                {location.toUpperCase()}
+              </option>
+            ))}
           </select>
         </div>
       </div>
-      {jobLocation.length > 0? (
+      {jobLocation.length > 0 ? (
         <Button
           variant="outlined"
           color="primary"

@@ -7,6 +7,13 @@ export default function AddJobForm(props) {
     match: { params },
   } = props;
   const companyId = params.companyId;
+  const [locations, setlocations] = useState([
+    "Bucharest",
+    "London",
+    "California",
+    "Madrid",
+    "Cluj",
+  ]);
 
   function submitForm(e) {
     e.preventDefault();
@@ -88,14 +95,22 @@ export default function AddJobForm(props) {
           </select>
         </p>
         <p>
-          <input
-            type="text"
+          <select
+            aria-label="Select a location..."
+            className="form-select form-select-sm mb-3"
+            aria-label=".form-select-sm example"
             id="location"
             name="location"
-            className="form-control"
-            placeholder="Location"
-            required=""
-          />
+          >
+            <option defaultValue>Select location...</option>
+            {Array.from(
+              new Set(locations.map((location) => location.toLowerCase()))
+            ).map((location) => (
+              <option key={location} value={`${location.toLowerCase()}`}>
+                {location.toUpperCase()}
+              </option>
+            ))}
+          </select>
         </p>
         <button className="btn btn-lg btn-primary btn-block" type="submit">
           Add job
