@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { JobContext } from "./JobsContext";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 import BottomNav from "./BottomNav";
+import Button from "@material-ui/core/Button";
 
 const CardLinks = styled(Link)`
   color: black;
@@ -20,11 +20,17 @@ export default function SearchBar() {
   const [isLoading] = loading;
   const [loadedJobs] = jobs;
 
-  const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
 
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+  const [jobName, setjobName] = useState("");
+  const [jobLocation, setjobLocation] = useState("");
+
+  const searchByName = (e) => {
+    setjobName(e.target.value);
+  };
+
+  const searchByLocation = (e) => {
+    setjobLocation(e.target.value);
   };
 
   const displayJobs = (array) => {
@@ -45,32 +51,63 @@ export default function SearchBar() {
     ));
   };
 
-  React.useEffect(() => {
-    const results = loadedJobs.filter(
-      (job) =>
-        job.name.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.location
-          .toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        job.type.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-  }, [searchTerm, loadedJobs]);
-
   const search = (
     <div>
-      <form>
+      <div className="mb-3">
         <input
-          className="form-control form-control-sm"
-          placeholder="Search..."
-          onChange={handleChange}
-          value={searchTerm}
           type="text"
-          name="search-job"
-          style={{ width: "20%", margin: "auto" }}
-        ></input>
-      </form>
+          className="form-control"
+          onChange={searchByName}
+          placeholder="What job are you looking for?"
+        />
+
+        <div className="mb-3">
+          <select
+            aria-label="Select a location..."
+            className="form-select form-select-sm mb-3"
+            aria-label=".form-select-sm example"
+            id="gender"
+            name="gender"
+            onChange={searchByLocation}
+          >
+            <option defaultValue>Search by location...</option>
+            {Array.from(new Set(loadedJobs.map((j) => j.location))).map(
+              (location) => (
+                <option key={location} value={`${location}`}>
+                  {location.toUpperCase()}
+                </option>
+              )
+            )}
+          </select>
+        </div>
+      </div>
+      {jobLocation.length > 0 && jobName.length == 0 ? (
+        <Button
+          variant="outlined"
+          color="primary"
+          href={`/jobs/name/${"undefined"}/location/${jobLocation}`}
+        >
+          See jobs
+        </Button>
+      ) : jobName.length > 0 && jobLocation.length == 0 ? (
+        <Button
+          variant="outlined"
+          color="primary"
+          href={`/jobs/name/${jobName}/location/${"undefined"}`}
+        >
+          See jobs
+        </Button>
+      ) : jobLocation.length > 0 && jobName.length > 0 ? (
+        <Button
+          variant="outlined"
+          color="primary"
+          href={`/jobs/name/${jobName}/location/${jobLocation}`}
+        >
+          See jobs
+        </Button>
+      ) : (
+        ""
+      )}
     </div>
   );
 

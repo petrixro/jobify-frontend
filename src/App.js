@@ -14,6 +14,7 @@ import AddJobForm from "./components/AddJobForm";
 import JobPageByCompany from "./components/JobPageByCompany";
 import UserFavoriteJobs from "./components/UserFavoriteJobs";
 import Footer from "./components/Footer";
+import FilteredJobs from "./components/FilteredJobs";
 
 function App() {
   return (
@@ -23,7 +24,15 @@ function App() {
         <JobProvider>
           <Switch>
             <Route path="/job/:JobID" component={JobDetails} />
-            <Route path="/users/:userId/favoriteJobs" exact component={UserFavoriteJobs} />
+            <Route
+              path="/jobs/name/:name/location/:location"
+              component={FilteredJobs}
+            />
+            <Route
+              path="/users/:userId/favoriteJobs"
+              exact
+              component={UserFavoriteJobs}
+            />
             <Route path="/company/:CompanyId" component={CompanyDetails} />
             <Route path="/" exact component={Home} />
             <Route path="/profile" component={UserProfile} />
