@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-expand-lg navbar-dark bg-primary ">
         <a className="navbar-brand" href="/news">
           <img
             src={process.env.PUBLIC_URL + "/logo.png"}

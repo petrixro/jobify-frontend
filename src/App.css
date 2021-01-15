@@ -4,7 +4,11 @@
 
 body{
 background-color: rgb(255, 255, 255);
-padding-top: 0px;
+padding: 0px;
+}
+
+.container-fluid {
+  padding: 0px;
 }
 
 .cardContainer {
