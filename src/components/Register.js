@@ -77,7 +77,7 @@ export default function Register() {
               id="image"
               name="image"
               className="form-control"
-              placeholder="image"
+              placeholder="User image"
               required
             />
           </p>

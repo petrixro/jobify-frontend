@@ -64,11 +64,11 @@ const Navbar = () => {
                 Add a company
               </a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a href="/#" className="nav-link">
                 Login
               </a>
-            </li>
+            </li> */}
             <li className="nav-item">
               <a href="/register" className="nav-link">
                 Register
