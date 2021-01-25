@@ -1,8 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import JobByCompany from "../JobComponents/JobByCompany.js";
 import HoverRating from "../UtilComponents/HoverRating.js";
+import { useAuth0 } from "@auth0/auth0-react";
+import AuthService from "../../services/auth-service";
 
 const CompanyImage = styled.img`
   width: 50%;
@@ -19,6 +21,9 @@ const CompanyContainer = styled.div`
 const CompanyDetails = (props) => {
   const [companies, setCompanies] = useState([]);
   const [jobs, setJobs] = useState([]);
+  let { user, isAuthenticated } = useAuth0();
+  const [currentUser, setcurrentUser] = useState();
+
   const {
     match: { params },
   } = props;
@@ -28,6 +33,9 @@ const CompanyDetails = (props) => {
     axios
       .get("http://localhost:8080/api/v1/companies")
       .then((res) => setCompanies(res.data));
+
+    const user = AuthService.getCurrentUser();
+    setcurrentUser(user);
   }, []);
 
   function deleteCompany() {
@@ -62,23 +70,31 @@ const CompanyDetails = (props) => {
                 </a>
                 <br />
                 <br />
-                <a
-                  href={`/companies/${company.id}/jobs`}
-                  className="btn btn-primary"
-                  role="button"
-                >
-                  Add new job
-                </a>
-                <br />
-                <br />
-                <button className="btn btn-danger" onClick={deleteCompany}>
-                  Delete Company
-                </button>
-                <br />
-                <br />
-                <b>Company Rating</b>
-                <HoverRating />
-                <br />
+                {currentUser ? (
+                  <div>
+                    <a
+                      href={`/companies/${company.id}/jobs`}
+                      className="btn btn-primary"
+                      role="button"
+                    >
+                      Add new job
+                    </a>
+                    <br />
+                    <br />
+
+                    <button className="btn btn-danger" onClick={deleteCompany}>
+                      Delete Company
+                    </button>
+
+                    <br />
+                    <br />
+                    <b>Company Rating</b>
+                    <HoverRating />
+                    <br />
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </CompanyContainer>

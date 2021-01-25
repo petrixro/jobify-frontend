@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import authHeader from "../../services/auth-header";
 
 export default function AddJobForm(props) {
   const [job, setJob] = useState({});
@@ -26,13 +27,17 @@ export default function AddJobForm(props) {
       location: data.get("location"),
     });
 
-    axios.post(`http://localhost:8080/api/v1/companies/${companyId}/jobs`, {
-      name: data.get("name"),
-      description: data.get("desc"),
-      applyLink: data.get("applyLink"),
-      type: data.get("type"),
-      location: data.get("location"),
-    });
+    axios.post(
+      `http://localhost:8080/api/v1/companies/${companyId}/jobs`,
+      {
+        name: data.get("name"),
+        description: data.get("desc"),
+        applyLink: data.get("applyLink"),
+        type: data.get("type"),
+        location: data.get("location"),
+      },
+      { headers: authHeader() }
+    );
   }
 
   return (
@@ -98,7 +103,6 @@ export default function AddJobForm(props) {
           <select
             aria-label="Select a location..."
             className="form-select form-select-sm mb-3"
-            aria-label=".form-select-sm example"
             id="location"
             name="location"
           >

@@ -93,7 +93,7 @@ export default class Register extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.register(
+      AuthService.registerUser(
         this.state.username,
         this.state.email,
         this.state.password
@@ -124,7 +124,7 @@ export default class Register extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="row">
+        <div className="row mt-5">
           <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
             <img
               className="img-fluid"
@@ -141,7 +141,7 @@ export default class Register extends Component {
             >
               {!this.state.successful && (
                 <div>
-                  <h2 className="form-signin-heading">Welcome to Jobify!</h2>
+                  <h2 className="form-signin-heading">Register new user</h2>
                   <p>
                     <Input
                       type="text"

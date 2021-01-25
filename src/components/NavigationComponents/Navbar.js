@@ -110,8 +110,13 @@ const Navbar = () => {
                 </li>
 
                 <li className="nav-item">
-                  <Link to={"/register"} className="nav-link">
+                  <Link to={"/user/register"} className="nav-link">
                     Sign Up
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/register/company"} className="nav-link">
+                    Sign Up As Company
                   </Link>
                 </li>
               </div>

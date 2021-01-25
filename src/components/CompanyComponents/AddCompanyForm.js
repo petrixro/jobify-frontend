@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import authHeader from "../../services/auth-header";
 
 export default function Register() {
   const [company, setCompany] = useState({});
@@ -13,11 +14,15 @@ export default function Register() {
       logo: data.get("logo"),
     });
 
-    axios.post("http://localhost:8080/api/v1/companies", {
-      name: data.get("name"),
-      websiteLink: data.get("link"),
-      companyLogo: data.get("logo"),
-    });
+    axios.post(
+      "http://localhost:8080/api/v1/companies",
+      {
+        name: data.get("name"),
+        websiteLink: data.get("link"),
+        companyLogo: data.get("logo"),
+      },
+      { headers: authHeader() }
+    );
   }
 
   return (

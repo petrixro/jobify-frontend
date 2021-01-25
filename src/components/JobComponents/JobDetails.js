@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { JobContext } from "./JobsContext";
 import styled from "styled-components";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import AuthService from "../../services/auth-service";
 
 const JobImage = styled.img`
   width: 10%;
@@ -17,10 +19,21 @@ const JobContainer = styled.div`
 const JobDetails = (props) => {
   const { jobs } = useContext(JobContext);
   const [loadedJobs] = jobs;
+
+  let { user, isAuthenticated } = useAuth0();
+  const [currentUser, setcurrentUser] = useState();
+
   const {
     match: { params },
   } = props;
   const jobId = params.JobID;
+
+  useEffect(() => {
+    return () => {
+      const user = AuthService.getCurrentUser();
+      setcurrentUser(user);
+    };
+  }, []);
 
   function deleteJob() {
     axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`);
@@ -65,25 +78,30 @@ const JobDetails = (props) => {
                     style={{ textAlign: "center", marginTop: "6%" }}
                     className="col-lg-4 col-md-5 mb-4 mb-md-0"
                   >
-                    {/* <h3>{job.company.name}</h3> */}
-
+                    Job posted by <h3>{job.company.name}</h3>
                     <br />
-                    <button className="btn btn-danger" onClick={deleteJob}>
-                      Delete job
-                    </button>
-                    <br />
-                    <br />
-                    <a
-                      href={job.applyLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-success"
-                      role="button"
-                    >
-                      Apply
-                    </a>
-                    <br />
-                    <br />
+                    {currentUser ? (
+                      <div>
+                        <button className="btn btn-danger" onClick={deleteJob}>
+                          Delete job
+                        </button>
+                        <br />
+                        <br />
+                        <a
+                          href={job.applyLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn btn-success"
+                          role="button"
+                        >
+                          Apply
+                        </a>
+                        <br />
+                        <br />
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               </div>
