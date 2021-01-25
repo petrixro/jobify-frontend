@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { JobContext } from "./JobsContext";
+import { JobContext } from "../JobComponents/JobsContext";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import BottomNav from "./BottomNav";
+import BottomNav from "../NavigationComponents/BottomNav";
 import Button from "@material-ui/core/Button";
 
 const CardLinks = styled(Link)`

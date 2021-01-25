@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import Loading from "./Loading";
+import Loading from "../UtilComponents/Loading";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Axios from "axios";
@@ -81,15 +81,19 @@ export default function Companies() {
   return (
     <React.Fragment>
       <div id="carousel-companies" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="img-fluid" src={process.env.PUBLIC_URL + '/companies.jpg'} alt="First slide"/>
-              <div class="carousel-caption">
-                <h1>Companies</h1>
-              </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              class="img-fluid"
+              src={process.env.PUBLIC_URL + "/companies.jpg"}
+              alt="First slide"
+            />
+            <div class="carousel-caption">
+              <h1>Companies</h1>
             </div>
           </div>
         </div>
+      </div>
       {search}
       {content}
     </React.Fragment>

@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { JobContext } from "./JobsContext";
-import styled from "styled-components";
 import Axios from "axios";
 
 const JobByCompany = (props) => {

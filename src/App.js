@@ -1,21 +1,23 @@
 import "./App.css";
 import Home from "./components/Home";
-import { JobProvider } from "./components/JobsContext";
-import UserProfile from "./components/UserProfile";
-import Navbar from "./components/Navbar";
-import JobDetails from "./components/JobDetails";
-import News from "./components/NewsPage";
-import Companies from "./components/Companies";
+import { JobProvider } from "./components/JobComponents/JobsContext";
+import UserProfile from "./components/UserComponents/UserProfile";
+import Navbar from "./components/NavigationComponents/Navbar";
+import JobDetails from "./components/JobComponents/JobDetails";
+import News from "./components/NewsComponents/NewsPage";
+import Companies from "./components/CompanyComponents/Companies";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CompanyDetails from "./components/CompanyDetails";
-import Register from "./components/Register";
-import AddCompanyForm from "./components/AddCompanyForm";
-import AddJobForm from "./components/AddJobForm";
-import JobPageByCompany from "./components/JobPageByCompany";
-import UserFavoriteJobs from "./components/UserFavoriteJobs";
-import Footer from "./components/Footer";
-import FilteredJobs from "./components/FilteredJobs";
-import UsersLookingForJobPage from "./components/UsersLookingForJobPage";
+import CompanyDetails from "./components/CompanyComponents/CompanyDetails";
+import Register from "./components/AuthComponents/Register";
+import AddCompanyForm from "./components/CompanyComponents/AddCompanyForm";
+import AddJobForm from "./components/JobComponents/AddJobForm";
+import JobPageByCompany from "./components/JobComponents/JobPageByCompany";
+import UserFavoriteJobs from "./components/UserComponents/UserFavoriteJobs";
+import Footer from "./components/NavigationComponents/Footer";
+import FilteredJobs from "./components/JobComponents/FilteredJobs";
+import UsersLookingForJobPage from "./components/UserComponents/UsersLookingForJobPage";
+import Login from "./components/AuthComponents/Login";
+import Profile from "./components/AuthComponents/TestProfile";
 
 function App() {
   return (
@@ -55,6 +57,10 @@ function App() {
               path="/companies/:companyId/jobs/:jobId"
               component={JobPageByCompany}
             />
+
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
           </Switch>
         </JobProvider>
         <Footer />

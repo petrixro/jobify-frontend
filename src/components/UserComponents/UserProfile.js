@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { JobContext } from "./JobsContext";
-import Loading from "./Loading";
+import { JobContext } from "../JobComponents/JobsContext";
+import Loading from "../UtilComponents/Loading";
 
 const Profile = () => {
   const { loading } = useContext(JobContext);

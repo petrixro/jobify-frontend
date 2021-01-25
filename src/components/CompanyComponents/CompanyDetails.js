@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { JobContext } from "./JobsContext";
 import styled from "styled-components";
 import axios from "axios";
-import JobByCompany from "./JobByCompany.js";
-import RatingComponent from "./HoverRating.js";
-import HoverRating from "./HoverRating.js";
+import JobByCompany from "../JobComponents/JobByCompany.js";
+import HoverRating from "../UtilComponents/HoverRating.js";
 
 const CompanyImage = styled.img`
   width: 50%;

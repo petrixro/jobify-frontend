@@ -1,6 +1,5 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import Loading from "./Loading";
 
 const NewsPage = () => {
   const [loadedNews, setLoadedNews] = useState([]);

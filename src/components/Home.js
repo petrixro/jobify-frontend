@@ -1,6 +1,5 @@
 import React from "react";
-import Pagination from "./Pagination";
-import SearchBar from "./SearchBar";
+import SearchBar from "./UtilComponents/SearchBar";
 
 function Home() {
   return (

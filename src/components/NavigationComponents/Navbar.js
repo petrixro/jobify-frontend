@@ -1,11 +1,35 @@
-import React from "react";
-import Register from "./Register";
-import Login from "./Login";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
+import AuthService from "../../services/auth-service";
+
 const Navbar = () => {
   let { user, isAuthenticated } = useAuth0();
+
+  const [state, setState] = useState({
+    showModeratorBoard: false,
+    showAdminBoard: false,
+    currentUser: undefined,
+  });
+
+  useEffect(() => {
+    return () => {
+      const user = AuthService.getCurrentUser();
+
+      if (user) {
+        setState({
+          currentUser: user,
+          showModeratorBoard: user.roles.includes("ROLE_COMPANY"),
+          showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        });
+      }
+    };
+  }, []);
+
+  function logOut() {
+    AuthService.logout();
+  }
 
   if (isAuthenticated) {
     localStorage.setItem("username", user.nickname);
@@ -64,16 +88,34 @@ const Navbar = () => {
                 Add a company
               </a>
             </li>
-            {/* <li className="nav-item">
-              <a href="/#" className="nav-link">
-                Login
-              </a>
-            </li> */}
-            <li className="nav-item">
-              <a href="/register" className="nav-link">
-                Register
-              </a>
-            </li>
+            {state.currentUser ? (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/profile"} className="nav-link">
+                    {state.currentUser.username}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a href="/login" className="nav-link" onClick={logOut}>
+                    LogOut
+                  </a>
+                </li>
+              </div>
+            ) : (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/login"} className="nav-link">
+                    Login
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link to={"/register"} className="nav-link">
+                    Sign Up
+                  </Link>
+                </li>
+              </div>
+            )}
           </ul>
           {isAuthenticated && <Link to="/profile">User Profile</Link>}
         </div>
