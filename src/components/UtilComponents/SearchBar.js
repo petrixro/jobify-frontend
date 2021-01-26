@@ -34,21 +34,25 @@ export default function SearchBar() {
   };
 
   const displayJobs = (array) => {
-    return array.map((job) => (
-      <CardLinks key={job.id} to={"/job/" + job.id}>
-        <div className="card">
-          <h4>{job.company.name}</h4>
-          <img src={job.company.companyLogo} alt="" />
-          <strong>
-            <h5>{job.name}</h5>
-          </strong>
-          <p>Location: {job.location}</p>
-          <p>
-            Job type: <strong style={{ color: "green" }}>{job.type}</strong>
-          </p>
-        </div>
-      </CardLinks>
-    ));
+    if (array.length === 0) {
+      return [];
+    } else {
+      return array.map((job) => (
+        <CardLinks key={job.id} to={"/job/" + job.id}>
+          <div className="card">
+            <h4>{job.company.name}</h4>
+            <img src={job.company.companyLogo} alt="" />
+            <strong>
+              <h5>{job.name}</h5>
+            </strong>
+            <p>Location: {job.location}</p>
+            <p>
+              Job type: <strong style={{ color: "green" }}>{job.type}</strong>
+            </p>
+          </div>
+        </CardLinks>
+      ));
+    }
   };
 
   const search = (
@@ -71,13 +75,15 @@ export default function SearchBar() {
             onChange={searchByLocation}
           >
             <option defaultValue>Search by location...</option>
-            {Array.from(
-              new Set(loadedJobs.map((j) => j.location.toLowerCase()))
-            ).map((location) => (
-              <option key={location} value={`${location.toLowerCase()}`}>
-                {location.toUpperCase()}
-              </option>
-            ))}
+            {loadedJobs.length > 0
+              ? Array.from(
+                  new Set(loadedJobs.map((j) => j.location.toLowerCase()))
+                ).map((location) => (
+                  <option key={location} value={`${location.toLowerCase()}`}>
+                    {location.toUpperCase()}
+                  </option>
+                ))
+              : ""}
           </select>
         </div>
       </div>

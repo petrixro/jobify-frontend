@@ -26,7 +26,7 @@ export default function Register() {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <form
         className="form-signin"
         method="post"
@@ -70,6 +70,6 @@ export default function Register() {
           Add company
         </button>
       </form>
-    </div>
+    </React.Fragment>
   );
 }

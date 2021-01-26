@@ -14,17 +14,15 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-    return () => {
-      const user = AuthService.getCurrentUser();
+    const user = AuthService.getCurrentUser();
 
-      if (user) {
-        setState({
-          currentUser: user,
-          showModeratorBoard: user.roles.includes("ROLE_COMPANY"),
-          showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-        });
-      }
-    };
+    if (user) {
+      setState({
+        currentUser: user,
+        showModeratorBoard: user.roles.includes("ROLE_COMPANY"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
   }, []);
 
   function logOut() {
@@ -84,9 +82,14 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <a href="/companies/addCompany" className="nav-link">
-                Add a company
-              </a>
+              {state.currentUser &&
+              state.currentUser.roles.includes("ROLE_ADMIN") ? (
+                <a href="/companies/addCompany" className="nav-link">
+                  Add a company
+                </a>
+              ) : (
+                ""
+              )}
             </li>
             {state.currentUser ? (
               <div className="navbar-nav ml-auto">

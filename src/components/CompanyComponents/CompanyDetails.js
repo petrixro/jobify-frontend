@@ -70,7 +70,8 @@ const CompanyDetails = (props) => {
                 </a>
                 <br />
                 <br />
-                {currentUser ? (
+                {currentUser.roles.includes("ROLE_ADMIN") ||
+                currentUser.roles.includes("ROLE_COMPANY") ? (
                   <div>
                     <a
                       href={`/companies/${company.id}/jobs`}

@@ -20,20 +20,30 @@ const JobDetails = (props) => {
   const { jobs } = useContext(JobContext);
   const [loadedJobs] = jobs;
 
-  let { user, isAuthenticated } = useAuth0();
   const [currentUser, setcurrentUser] = useState();
+  const [userDetails, setuserDetails] = useState({});
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    setcurrentUser(user);
+    currentUser
+      ? axios
+          .get(`http://localhost:8080/api/v1/users/${currentUser.id}`)
+          .then((res) => setuserDetails(res.data))
+      : console.log("Not logged in");
+  }, []);
 
   const {
     match: { params },
   } = props;
   const jobId = params.JobID;
 
-  useEffect(() => {
-    return () => {
-      const user = AuthService.getCurrentUser();
-      setcurrentUser(user);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     const user = AuthService.getCurrentUser();
+  //     setcurrentUser(user);
+  //   };
+  // }, []);
 
   function deleteJob() {
     axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`);
@@ -80,7 +90,9 @@ const JobDetails = (props) => {
                   >
                     Job posted by <h3>{job.company.name}</h3>
                     <br />
-                    {currentUser ? (
+                    {/* {console.log(userDetails)} */}
+                    {currentUser && currentUser.roles.includes("ROLE_COMPANY") &&
+                    job.companyId === userDetails.id ? (
                       <div>
                         <button className="btn btn-danger" onClick={deleteJob}>
                           Delete job
