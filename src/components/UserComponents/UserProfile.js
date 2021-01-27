@@ -28,7 +28,7 @@ export default function UserProfile(props) {
     axios
       .get(`http://localhost:8080/api/v1/users/${userId}/skills`)
       .then((res) => setuserSkills(res.data)),
-    []
+    [user, userSkills]
   );
 
   return (
