@@ -70,8 +70,9 @@ const CompanyDetails = (props) => {
                 </a>
                 <br />
                 <br />
-                {currentUser.roles.includes("ROLE_ADMIN") ||
-                currentUser.roles.includes("ROLE_COMPANY") ? (
+                {currentUser &&
+                (currentUser.roles.includes("ROLE_ADMIN") ||
+                  currentUser.roles.includes("ROLE_COMPANY")) ? (
                   <div>
                     <a
                       href={`/companies/${company.id}/jobs`}
@@ -90,11 +91,10 @@ const CompanyDetails = (props) => {
                     <br />
                     <br />
                     <b>Company Rating</b>
-                    <HoverRating />
                     <br />
                   </div>
                 ) : (
-                  ""
+                  <HoverRating />
                 )}
               </div>
             </div>

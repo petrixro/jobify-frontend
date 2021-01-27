@@ -2,18 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../UtilComponents/Loading";
 
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Container from "@material-ui/core/Container";
-
-const CardLinks = styled(Link)`
-  color: black;
-  text-decoration: none;
-  :hover {
-    color: #00b3e2;
-    text-decoration: none;
-  }
-`;
 
 export default function UsersLookingForJobPage() {
   const [users, setUsers] = useState([]);
@@ -67,26 +56,53 @@ export default function UsersLookingForJobPage() {
           <option value="2">Junior</option>
           <option value="3">Experienced</option>
           <option value="4">Expert</option>
-          <option value="5">Expert</option>
         </select>
         ;
       </form>
     </div>
   );
 
+  const getSkills = (userId) => {
+    return axios.get(`http://localhost:8080/api/v1/users/${userId}/skills`);
+  };
+
   const displayUsers = (array) => {
     return array.map((user) => (
-      <CardLinks key={user.id} to={"/users/" + user.id}>
-        <div className="card mt-3">
-          <h4 style={{ width: "50%" }}>{user.username}</h4>
-          <img src={user.image} alt="" />
-          <strong>
-            <h5>{user.email}</h5>
-          </strong>
-          <p>Experience level: {user.experience}</p>
-          <p></p>
+      <div className="mt-3 profile">
+        <div class="img-box">
+          <img
+            src={user.image}
+            class="img-responsive"
+            style={{ width: "50%" }}
+          />
+          <ul class="text-center">
+            <a href="#">
+              <li>
+                <i class="fa fa-facebook"></i>
+              </li>
+            </a>
+            <a href="#">
+              <li>
+                <i class="fa fa-twitter"></i>
+              </li>
+            </a>
+            <a href="#">
+              <li>
+                <i class="fa fa-linkedin"></i>
+              </li>
+            </a>
+          </ul>
         </div>
-      </CardLinks>
+        <h1>
+          <a href={`/user/profile/${user.id}`}>{user.username}</a>
+        </h1>
+        <h2>{user.jobRole}</h2>
+        <p>
+          {user.experience}
+          {user.experience === "1" ? " year" : " years"} of experience.
+        </p>
+        <hr />
+      </div>
     ));
   };
 
@@ -104,7 +120,19 @@ export default function UsersLookingForJobPage() {
     <Container>
       {search}
       {searchByExperience}
-      {content}
+      <section class="team">
+        <div class="container">
+          <div class="row">
+            <div class="col col-md-offset-1">
+              <div class="col-lg-12">
+                <h6 class="description">Ready to work</h6>
+                <div class="row pt-md"></div>
+                {content}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </Container>
   );
 }

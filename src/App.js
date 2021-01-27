@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./components/Home";
 import { JobProvider } from "./components/JobComponents/JobsContext";
-import UserProfile from "./components/AuthComponents/UserProfile";
+import UserProfile from "./components/UserComponents/UserProfile";
 import Navbar from "./components/NavigationComponents/Navbar";
 import JobDetails from "./components/JobComponents/JobDetails";
 import News from "./components/NewsComponents/NewsPage";
@@ -16,11 +16,11 @@ import Footer from "./components/NavigationComponents/Footer";
 import FilteredJobs from "./components/JobComponents/FilteredJobs";
 import UsersLookingForJobPage from "./components/UserComponents/UsersLookingForJobPage";
 import Login from "./components/AuthComponents/Login";
-import Profile from "./components/AuthComponents/UserProfile";
 import RegisterCompany from "./components/AuthComponents/RegisterCompany";
 import RegisterUser from "./components/AuthComponents/RegisterUser";
 
 import React, { Component } from "react";
+import MyUserProfile from "./components/AuthComponents/MyUserProfile";
 
 class App extends Component {
   render() {
@@ -50,6 +50,11 @@ class App extends Component {
                 exact
                 component={CompanyDetails}
               />
+              <Route
+                path="/myCompany/:id"
+                exact
+                component={CompanyDetails}
+              />
               <Route path="/" exact component={Home} />
               <Route path="/profile" exact component={UserProfile} />
               <Route path="/news" exact component={News} />
@@ -76,7 +81,8 @@ class App extends Component {
                 path="/register/company"
                 component={RegisterCompany}
               />
-              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/user/myProfile/:id" component={UserProfile} />
+              <Route exact path="/user/profile/:id" component={UserProfile} />
             </Switch>
           </JobProvider>
           <Footer />

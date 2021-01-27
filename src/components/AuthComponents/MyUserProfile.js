@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import AuthService from "../../services/auth-service";
 
-export default function UserProfile(props) {
+export default function MyUserProfile(props) {
   const [currentUser, setcurrentUser] = useState(AuthService.getCurrentUser());
   const [userDetails, setuserDetails] = useState({});
 

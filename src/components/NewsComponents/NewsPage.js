@@ -28,7 +28,9 @@ const NewsPage = () => {
             />
             <hr />
             <h5 className="card-title mt-4">
-              <a href={article.url} target="_blank" rel="noreferrer">{article.title}</a>
+              <a href={article.url} target="_blank" rel="noreferrer">
+                {article.title}
+              </a>
             </h5>
             <p className="card-text">{article.description}</p>
             <p className="card-text">
@@ -64,7 +66,7 @@ const NewsPage = () => {
   };
 
   const search = (
-    <div>
+    <div className="mt-5">
       <form className="">
         <input
           className="form-control form-control-sm"
@@ -81,16 +83,6 @@ const NewsPage = () => {
 
   return (
     <React.Fragment>
-      <div id="carousel2" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="img-fluid" src={process.env.PUBLIC_URL + '/news.jpg'} alt="First slide"/>
-              <div class="carousel-caption">
-                <h1 style={{float: "left"}}>Latest World News</h1>
-              </div>
-            </div>
-          </div>
-        </div>
       {search}
       {searchResults.length > 0
         ? displayNews(searchResults)

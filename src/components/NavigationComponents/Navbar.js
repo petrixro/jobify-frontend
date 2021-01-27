@@ -94,9 +94,22 @@ const Navbar = () => {
             {state.currentUser ? (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <Link to={"/profile"} className="nav-link">
-                    {state.currentUser.username}
-                  </Link>
+                  {state.currentUser &&
+                  state.currentUser.roles.includes("ROLE_COMPANY") ? (
+                    <Link
+                      to={`/company/${state.currentUser.id}`}
+                      className="nav-link"
+                    >
+                      {state.currentUser.username}
+                    </Link>
+                  ) : (
+                    <Link
+                      to={`/user/myProfile/${state.currentUser.id}`}
+                      className="nav-link"
+                    >
+                      {state.currentUser.username}
+                    </Link>
+                  )}
                 </li>
                 <li className="nav-item">
                   <a href="/login" className="nav-link" onClick={logOut}>
