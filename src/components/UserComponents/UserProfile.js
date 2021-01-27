@@ -20,16 +20,19 @@ export default function UserProfile(props) {
     axios.delete(`http://localhost:8080/api/v1/users/${user.id}`);
   };
 
-  useEffect(
-    () =>
-      axios
-        .get(`http://localhost:8080/api/v1/users/${userId}`)
-        .then((res) => setuser(res.data)),
+  useEffect(() => {
+    getData();
+  }, []);
+
+  function getData() {
+    axios
+      .get(`http://localhost:8080/api/v1/users/${userId}`)
+      .then((res) => setuser(res.data));
+
     axios
       .get(`http://localhost:8080/api/v1/users/${userId}/skills`)
-      .then((res) => setuserSkills(res.data)),
-    [user, userSkills]
-  );
+      .then((res) => setuserSkills(res.data));
+  }
 
   return (
     <div class="container">
