@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
 import AuthService from "../../services/auth-service";
 
-export default function UserProfile(props) {
-  const {
-    match: { params },
-  } = props;
-  const userId = params.id;
+export default function UserProfile() {
+  const {userId} = useParams();
+  console.log(userId);
   const [user, setuser] = useState({});
   const [userSkills, setuserSkills] = useState([]);
 

@@ -81,8 +81,8 @@ class App extends Component {
                 path="/register/company"
                 component={RegisterCompany}
               />
-              <Route exact path="/user/myProfile/:id" component={UserProfile} />
-              <Route exact path="/user/profile/:id" component={UserProfile} />
+              <Route exact path="/user/myProfile/:userId" component={UserProfile} />
+              <Route exact path="/user/profile/:userId" component={UserProfile} />
             </Switch>
           </JobProvider>
           <Footer />
