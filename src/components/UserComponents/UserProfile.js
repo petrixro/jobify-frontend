@@ -24,14 +24,13 @@ export default function UserProfile(props) {
     getData();
   }, []);
 
-  function getData() {
-    axios
-      .get(`http://localhost:8080/api/v1/users/${userId}`)
-      .then((res) => setuser(res.data));
-
-    axios
-      .get(`http://localhost:8080/api/v1/users/${userId}/skills`)
-      .then((res) => setuserSkills(res.data));
+  async function getData() {
+    const response =  await axios.get(`http://localhost:8080/api/v1/users/${userId}`); 
+      // .then((res) => setuser(res.data));
+      setuser(response.data)
+    const userResponse = axios.get(`http://localhost:8080/api/v1/users/${userId}/skills`);
+      setuserSkills((await userResponse).data);
+      // .then((res) => setuserSkills(res.data));
   }
 
   return (
