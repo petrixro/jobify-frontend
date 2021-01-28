@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
 import AuthService from "../../services/auth-service";
 
-export default function UserProfile(props) {
-  const {
-    match: { params },
-  } = props;
-  const userId = params.id;
+export default function UserProfile() {
+  const {userId} = useParams();
+  console.log(userId);
   const [user, setuser] = useState({});
   const [userSkills, setuserSkills] = useState([]);
 
@@ -28,14 +27,13 @@ export default function UserProfile(props) {
     getData();
   }, []);
 
-  function getData() {
-    axios
-      .get(`http://localhost:8080/api/v1/users/${userId}`)
-      .then((res) => setuser(res.data));
-
-    axios
-      .get(`http://localhost:8080/api/v1/users/${userId}/skills`)
-      .then((res) => setuserSkills(res.data));
+  async function getData() {
+    const response =  await axios.get(`http://localhost:8080/api/v1/users/${userId}`); 
+      // .then((res) => setuser(res.data));
+      setuser(response.data)
+    const userResponse = axios.get(`http://localhost:8080/api/v1/users/${userId}/skills`);
+      setuserSkills((await userResponse).data);
+      // .then((res) => setuserSkills(res.data));
   }
 
   return (
