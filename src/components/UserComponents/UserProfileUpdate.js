@@ -53,8 +53,8 @@ export default function UserProfileUpdate() {
     >
       <Card.Body>
         <Card.Title style={{ textAlign: "center" }}>Update User</Card.Title>
-        <form>
-          <div className="form-group">
+        <form className="form-signin">
+          <p>
             <input
               className="form-control"
               placeholder="Username"
@@ -63,8 +63,8 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="Email"
@@ -73,8 +73,8 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="User Experience"
@@ -83,8 +83,8 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="User Age"
@@ -93,8 +93,8 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="User Profile Picture"
@@ -103,17 +103,16 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <Button variant="success" className="mr-2" onClick={updateHandler}>
+          </p>
+          <button className="btn btn-success" onClick={updateHandler}>
             Update
-          </Button>
-          <Button
-            variant="warning"
-            className="mr-2"
+          </button>
+          <button
+            className="btn btn-danger"
             onClick={() => history.push(`/user/myProfile/${userId}`)}
           >
             Cancel
-          </Button>
+          </button>
         </form>
       </Card.Body>
     </Card>

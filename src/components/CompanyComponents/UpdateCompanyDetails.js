@@ -53,8 +53,8 @@ export default function UpdateCompanyDetails() {
     >
       <Card.Body>
         <Card.Title style={{ textAlign: "center" }}>Update Company</Card.Title>
-        <form>
-          <div className="form-group">
+        <form className="form-signin">
+          <p>
             <input
               className="form-control"
               placeholder="Company Name"
@@ -63,8 +63,8 @@ export default function UpdateCompanyDetails() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="Email"
@@ -73,8 +73,8 @@ export default function UpdateCompanyDetails() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="Website Link"
@@ -83,8 +83,8 @@ export default function UpdateCompanyDetails() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <div className="form-group">
+          </p>
+          <p>
             <input
               className="form-control"
               placeholder="Company Logo"
@@ -93,17 +93,16 @@ export default function UpdateCompanyDetails() {
               onChange={onChangeHandler}
               required
             />
-          </div>
-          <Button variant="success" className="mr-2" onClick={updateHandler}>
+          </p>
+          <button className="btn btn-success" onClick={updateHandler}>
             Update
-          </Button>
-          <Button
-            variant="warning"
-            className="mr-2"
-            onClick={() => history.push(`/myCompany/${companyId}`)}
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => history.push(`/company/${companyId}`)}
           >
             Cancel
-          </Button>
+          </button>
         </form>
       </Card.Body>
     </Card>
