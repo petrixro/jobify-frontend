@@ -4,45 +4,45 @@ import axios from "axios";
 import { Button, Card } from "react-bootstrap";
 import authHeader from "../../services/auth-header";
 
-export default function UpdateCompanyDetails() {
+export default function UserProfileUpdate() {
   const history = useHistory();
-  const { companyId } = useParams();
+  const { userId } = useParams();
 
-  const [company, setCompany] = useState({
-    name: "",
+  const [user, setUser] = useState({
+    username: "",
     email: "",
-    websiteLink: "",
-    companyLogo: "",
+    experience: "",
+    age: "",
+    image: "",
   });
 
   const onChangeHandler = (e) => {
-    setCompany({
-      ...company,
+    setUser({
+      ...user,
       [e.target.name]: e.target.value,
     });
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/v1/companies/${companyId}`)
-      .then((res) => {
-        setCompany({
-          name: res.data.name,
-          email: res.data.email,
-          websiteLink: res.data.websiteLink,
-          companyLogo: res.data.companyLogo,
-        });
+    axios.get(`http://localhost:8080/api/v1/users/${userId}`).then((res) => {
+      setUser({
+        username: res.data.username,
+        email: res.data.email,
+        experience: res.data.experience,
+        age: res.data.age,
+        image: res.data.image,
       });
-  }, [companyId]);
+    });
+  }, [userId]);
 
   const updateHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/api/v1/companies/${companyId}`, company, {
+      .put(`http://localhost:8080/api/v1/users/${userId}`, user, {
         headers: authHeader(),
       })
       .then((response) => {
-        history.push(`/company/${companyId}`);
+        history.push(`/user/myProfile/${userId}`);
       })
       .catch((error) => console.log(error));
   };
@@ -52,14 +52,14 @@ export default function UpdateCompanyDetails() {
       style={{ marginTop: "3rem", marginLeft: "18rem", marginRight: "18rem" }}
     >
       <Card.Body>
-        <Card.Title style={{ textAlign: "center" }}>Update Company</Card.Title>
+        <Card.Title style={{ textAlign: "center" }}>Update User</Card.Title>
         <form className="form-signin">
           <p>
             <input
               className="form-control"
-              placeholder="Company Name"
-              name="name"
-              value={company.name}
+              placeholder="Username"
+              name="username"
+              value={user.username}
               onChange={onChangeHandler}
               required
             />
@@ -69,7 +69,7 @@ export default function UpdateCompanyDetails() {
               className="form-control"
               placeholder="Email"
               name="email"
-              value={company.email}
+              value={user.email}
               onChange={onChangeHandler}
               required
             />
@@ -77,9 +77,9 @@ export default function UpdateCompanyDetails() {
           <p>
             <input
               className="form-control"
-              placeholder="Website Link"
-              name="websiteLink"
-              value={company.websiteLink}
+              placeholder="User Experience"
+              name="experience"
+              value={user.experience}
               onChange={onChangeHandler}
               required
             />
@@ -87,9 +87,19 @@ export default function UpdateCompanyDetails() {
           <p>
             <input
               className="form-control"
-              placeholder="Company Logo"
-              name="companyLogo"
-              value={company.companyLogo}
+              placeholder="User Age"
+              name="age"
+              value={user.age}
+              onChange={onChangeHandler}
+              required
+            />
+          </p>
+          <p>
+            <input
+              className="form-control"
+              placeholder="User Profile Picture"
+              name="image"
+              value={user.image}
               onChange={onChangeHandler}
               required
             />
@@ -99,7 +109,7 @@ export default function UpdateCompanyDetails() {
           </button>
           <button
             className="btn btn-danger"
-            onClick={() => history.push(`/company/${companyId}`)}
+            onClick={() => history.push(`/user/myProfile/${userId}`)}
           >
             Cancel
           </button>

@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AuthService from "../../services/auth-service";
-import CheckIcon from "@material-ui/icons/Check";
-import ClearIcon from "@material-ui/icons/Clear";
 import authHeader from "../../services/auth-header";
+import ClearIcon from "@material-ui/icons/Clear";
+import CheckIcon from "@material-ui/icons/Check";
 
 export default function UserProfile(props) {
   const { userId } = useParams();
@@ -13,10 +13,6 @@ export default function UserProfile(props) {
   const [userSkills, setuserSkills] = useState([]);
 
   const [currentUser, setcurrentUser] = useState(AuthService.getCurrentUser());
-
-  const updateUser = () => {
-    axios.put(`http://localhost:8080/api/v1/users/${user.id}`, user);
-  };
 
   const deleteUser = () => {
     axios.delete(`http://localhost:8080/api/v1/users/${user.id}`, {
@@ -79,10 +75,14 @@ export default function UserProfile(props) {
             ) : !currentUser ? (
               ""
             ) : (
-              <div className="profile-userbuttons">
-                <button type="button" class="btn btn-success btn-sm">
+              <div class="profile-userbuttons">
+                <a
+                  href={`/user/profile/update/${user.id}`}
+                  className="btn btn-success btn-sm"
+                  role="button"
+                >
                   Edit profile
-                </button>
+                </a>
                 <button
                   type="button"
                   class="btn btn-danger btn-sm"

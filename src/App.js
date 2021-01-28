@@ -20,6 +20,7 @@ import RegisterCompany from "./components/AuthComponents/RegisterCompany";
 import RegisterUser from "./components/AuthComponents/RegisterUser";
 import UpdateCompanyDetails from "./components/CompanyComponents/UpdateCompanyDetails";
 import AuthService from "./services/auth-service";
+import UserProfileUpdate from "./components/UserComponents/UserProfileUpdate";
 
 import React, { Component, useState } from "react";
 
@@ -86,6 +87,11 @@ export default function App() {
               component={UserProfile}
             />
             <Route exact path="/user/profile/:userId" component={UserProfile} />
+            <Route
+              exact
+              path="/user/profile/update/:userId"
+              component={UserProfileUpdate}
+            />
           </Switch>
         </JobProvider>
         <Footer />
