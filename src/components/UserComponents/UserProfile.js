@@ -1,22 +1,21 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AuthService from "../../services/auth-service";
+import authHeader from "../../services/auth-header";
 
 export default function UserProfile() {
-  const {userId} = useParams();
+  const { userId } = useParams();
   console.log(userId);
   const [user, setuser] = useState({});
   const [userSkills, setuserSkills] = useState([]);
 
   const [currentUser, setcurrentUser] = useState(AuthService.getCurrentUser());
 
-  const updateUser = () => {
-    axios.put(`http://localhost:8080/api/v1/users/${user.id}`, user);
-  };
-
   const deleteUser = () => {
-    axios.delete(`http://localhost:8080/api/v1/users/${user.id}`);
+    axios.delete(`http://localhost:8080/api/v1/users/${user.id}`, {
+      headers: authHeader(),
+    });
   };
 
   const isLookingForJob = () => {
@@ -28,12 +27,16 @@ export default function UserProfile() {
   }, []);
 
   async function getData() {
-    const response =  await axios.get(`http://localhost:8080/api/v1/users/${userId}`); 
-      // .then((res) => setuser(res.data));
-      setuser(response.data)
-    const userResponse = axios.get(`http://localhost:8080/api/v1/users/${userId}/skills`);
-      setuserSkills((await userResponse).data);
-      // .then((res) => setuserSkills(res.data));
+    const response = await axios.get(
+      `http://localhost:8080/api/v1/users/${userId}`
+    );
+    // .then((res) => setuser(res.data));
+    setuser(response.data);
+    const userResponse = axios.get(
+      `http://localhost:8080/api/v1/users/${userId}/skills`
+    );
+    setuserSkills((await userResponse).data);
+    // .then((res) => setuserSkills(res.data));
   }
 
   return (
@@ -63,9 +66,13 @@ export default function UserProfile() {
               </div>
             ) : (
               <div class="profile-userbuttons">
-                <button type="button" class="btn btn-success btn-sm">
+                <a
+                  href={`/user/profile/update/${user.id}`}
+                  className="btn btn-success btn-sm"
+                  role="button"
+                >
                   Edit profile
-                </button>
+                </a>
                 <button
                   type="button"
                   class="btn btn-danger btn-sm"
