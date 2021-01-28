@@ -39,12 +39,13 @@ const JobDetails = (props) => {
   } = props;
   const jobId = params.JobID;
 
-  // useEffect(() => {
-  //   return () => {
-  //     const user = AuthService.getCurrentUser();
-  //     setcurrentUser(user);
-  //   };
-  // }, []);
+  function addToFavorites() {
+    axios.post(
+      `http://localhost:8080/api/v1/jobs/${jobId}/addFavoriteJob/user/${currentUser.id}`
+    );
+    props.history.push(`/users/${currentUser.id}/favoriteJobs`);
+    window.location.reload();
+  }
 
   function deleteJob() {
     axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`, {
@@ -113,16 +114,27 @@ const JobDetails = (props) => {
                         </a>
                         <br />
                       </div>
+                    ) : !currentUser ? (
+                      ""
                     ) : (
-                      <a
-                        href={job.applyLink}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn btn-success"
-                        role="button"
-                      >
-                        Apply
-                      </a>
+                      <div>
+                        <a
+                          href={job.applyLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn btn-success"
+                          role="button"
+                        >
+                          Apply
+                        </a>
+                        <br />
+                        <buttton
+                          className="btn btn-primary mt-2"
+                          onClick={addToFavorites}
+                        >
+                          Add to favorites
+                        </buttton>
+                      </div>
                     )}
                   </div>
                 </div>

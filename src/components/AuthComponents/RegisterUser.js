@@ -212,7 +212,7 @@ export default class Register extends Component {
                       name="jobRole"
                       onChange={this.onChangeJobRole}
                     >
-                      <option selected value="Software Engineer">
+                      <option selected defaultValue value="Software Engineer">
                         Software Engineer
                       </option>
                       <option value="Fullstack Developer">

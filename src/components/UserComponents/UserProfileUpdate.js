@@ -14,6 +14,7 @@ export default function UserProfileUpdate() {
     experience: "",
     age: "",
     image: "",
+    jobRole: "",
   });
 
   const onChangeHandler = (e) => {
@@ -31,6 +32,7 @@ export default function UserProfileUpdate() {
         experience: res.data.experience,
         age: res.data.age,
         image: res.data.image,
+        jobRole: res.data.jobRole,
       });
     });
   }, [userId]);
@@ -93,6 +95,24 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
               required
             />
+          </p>
+          <p>
+            <select
+              class="form-select"
+              name="jobRole"
+              onChange={onChangeHandler}
+            >
+              <option selected value="Software Engineer">
+                Software Engineer
+              </option>
+              <option value="Fullstack Developer">Fullstack Developer</option>
+              <option value="Frontend Developer">Frontend Developer</option>
+              <option value="Backend Developer">Backend Developer</option>
+              <option value="Database Administration">
+                Database Administration
+              </option>
+              <option value="IT Architect">IT Architect</option>
+            </select>
           </p>
           <p>
             <input
