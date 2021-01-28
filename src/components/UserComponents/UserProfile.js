@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AuthService from "../../services/auth-service";
+import CheckIcon from "@material-ui/icons/Check";
+import ClearIcon from "@material-ui/icons/Clear";
+import authHeader from "../../services/auth-header";
 
-export default function UserProfile() {
-  const {userId} = useParams();
+export default function UserProfile(props) {
+  const { userId } = useParams();
   console.log(userId);
   const [user, setuser] = useState({});
   const [userSkills, setuserSkills] = useState([]);
@@ -16,11 +19,21 @@ export default function UserProfile() {
   };
 
   const deleteUser = () => {
-    axios.delete(`http://localhost:8080/api/v1/users/${user.id}`);
+    axios.delete(`http://localhost:8080/api/v1/users/${user.id}`, {
+      headers: authHeader(),
+    });
+    logOut();
+    props.history.push("/");
+    window.location.reload();
+  };
+
+  const logOut = () => {
+    AuthService.logout();
   };
 
   const isLookingForJob = () => {
     axios.put(`http://localhost:8080/api/v1/users/lookingForJob/${user.id}`);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -28,12 +41,16 @@ export default function UserProfile() {
   }, []);
 
   async function getData() {
-    const response =  await axios.get(`http://localhost:8080/api/v1/users/${userId}`); 
-      // .then((res) => setuser(res.data));
-      setuser(response.data)
-    const userResponse = axios.get(`http://localhost:8080/api/v1/users/${userId}/skills`);
-      setuserSkills((await userResponse).data);
-      // .then((res) => setuserSkills(res.data));
+    const response = await axios.get(
+      `http://localhost:8080/api/v1/users/${userId}`
+    );
+    // .then((res) => setuser(res.data));
+    setuser(response.data);
+    const userResponse = axios.get(
+      `http://localhost:8080/api/v1/users/${userId}/skills`
+    );
+    setuserSkills((await userResponse).data);
+    // .then((res) => setuserSkills(res.data));
   }
 
   return (
@@ -61,8 +78,10 @@ export default function UserProfile() {
                   Message
                 </button>
               </div>
+            ) : !currentUser ? (
+              ""
             ) : (
-              <div class="profile-userbuttons">
+              <div className="profile-userbuttons">
                 <button type="button" class="btn btn-success btn-sm">
                   Edit profile
                 </button>
@@ -73,14 +92,18 @@ export default function UserProfile() {
                 >
                   Delete profile
                 </button>
-                {console.log(user)}
-                <input
-                  type="checkbox"
-                  id="lookingForJob"
-                  name="lookingForJob"
-                  value="true"
-                  onChange={isLookingForJob}
-                ></input>
+                <button
+                  type="button"
+                  className={
+                    user.lookingForJob
+                      ? "btn btn-success mt-2"
+                      : "btn btn-danger mt-2"
+                  }
+                  onClick={isLookingForJob}
+                >
+                  Looking for job{" "}
+                  {user.lookingForJob ? <CheckIcon /> : <ClearIcon />}
+                </button>
               </div>
             )}
 

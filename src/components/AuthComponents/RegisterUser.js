@@ -119,6 +119,8 @@ export default class Register extends Component {
         }
       );
     }
+    this.props.history.push("/login");
+    window.location.reload();
   }
 
   render() {

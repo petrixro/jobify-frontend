@@ -19,87 +19,77 @@ import Login from "./components/AuthComponents/Login";
 import RegisterCompany from "./components/AuthComponents/RegisterCompany";
 import RegisterUser from "./components/AuthComponents/RegisterUser";
 import UpdateCompanyDetails from "./components/CompanyComponents/UpdateCompanyDetails";
+import AuthService from "./services/auth-service";
 
-import React, { Component } from "react";
-import MyUserProfile from "./components/AuthComponents/MyUserProfile";
+import React, { Component, useState } from "react";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <Navbar />
-          <JobProvider>
-            <Switch>
-              <Route path="/job/:JobID" component={JobDetails} />
-              <Route
-                path="/jobs/name/:name/location/:location"
-                component={FilteredJobs}
-              />
-              <Route
-                path="/users/:userId/favoriteJobs"
-                exact
-                component={UserFavoriteJobs}
-              />
-              <Route
-                path="/users/lookingForJob"
-                exact
-                component={UsersLookingForJobPage}
-              />
-              <Route
-                path="/company/:CompanyId"
-                exact
-                component={CompanyDetails}
-              />
-              <Route path="/myCompany/:id" exact component={CompanyDetails} />
-              <Route path="/" exact component={Home} />
-              <Route path="/profile" exact component={UserProfile} />
-              <Route path="/news" exact component={News} />
-              <Route path="/companies" exact component={Companies} />
-              <Route
-                path="/companies/addCompany"
-                exactcomponent={AddCompanyForm}
-              />
-              <Route
-                path="/companies/update/:companyId"
-                exact
-                component={UpdateCompanyDetails}
-              />
-              <Route
-                path="/companies/:companyId/jobs"
-                exact
-                component={AddJobForm}
-              />
-              <Route
-                path="/companies/:companyId/jobs/:jobId"
-                exact
-                component={JobPageByCompany}
-              />
+export default function App() {
+  const [currentUser, setcurrentUser] = useState(AuthService.getCurrentUser());
 
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/user/register" component={RegisterUser} />
-              <Route
-                exact
-                path="/register/company"
-                component={RegisterCompany}
-              />
-              <Route
-                exact
-                path="/user/myProfile/:userId"
-                component={UserProfile}
-              />
-              <Route
-                exact
-                path="/user/profile/:userId"
-                component={UserProfile}
-              />
-            </Switch>
-          </JobProvider>
-          <Footer />
-        </Router>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Router>
+        <Navbar />
+        <JobProvider>
+          <Switch>
+            <Route path="/job/:JobID" component={JobDetails} />
+            <Route
+              path="/jobs/name/:name/location/:location"
+              component={FilteredJobs}
+            />
+            <Route
+              path="/users/:userId/favoriteJobs"
+              exact
+              component={UserFavoriteJobs}
+            />
+            <Route
+              path="/users/lookingForJob"
+              exact
+              component={UsersLookingForJobPage}
+            />
+            <Route
+              path="/company/:CompanyId"
+              exact
+              component={CompanyDetails}
+            />
+            <Route path="/myCompany/:id" exact component={CompanyDetails} />
+            <Route path="/" exact component={Home} />
+            <Route path="/profile" exact component={UserProfile} />
+            <Route path="/news" exact component={News} />
+            <Route path="/companies" exact component={Companies} />
+            <Route
+              path="/companies/addCompany"
+              exactcomponent={AddCompanyForm}
+            />
+            <Route
+              path="/companies/update/:companyId"
+              exact
+              component={UpdateCompanyDetails}
+            />
+            <Route
+              path="/companies/:companyId/jobs"
+              exact
+              component={AddJobForm}
+            />
+            <Route
+              path="/companies/:companyId/jobs/:jobId"
+              exact
+              component={JobPageByCompany}
+            />
+
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/user/register" component={RegisterUser} />
+            <Route exact path="/register/company" component={RegisterCompany} />
+            <Route
+              exact
+              path="/user/myProfile/:userId"
+              component={UserProfile}
+            />
+            <Route exact path="/user/profile/:userId" component={UserProfile} />
+          </Switch>
+        </JobProvider>
+        <Footer />
+      </Router>
+    </div>
+  );
 }
-
-export default App;
