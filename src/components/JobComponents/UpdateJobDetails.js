@@ -43,6 +43,7 @@ export default function UpdateJobDetails() {
       })
       .then((response) => {
         history.push(`/job/${jobId}`);
+        window.location.reload();
       })
       .catch((error) => console.log(error));
   };
@@ -80,7 +81,7 @@ export default function UpdateJobDetails() {
           <p>
             <input
               className="form-control"
-              placeholder="Job's Application Link"
+              placeholder="Link to apply"
               name="applyLink"
               value={job.applyLink}
               onChange={onChangeHandler}
@@ -88,14 +89,19 @@ export default function UpdateJobDetails() {
             />
           </p>
           <p>
-            <input
+            <select
               className="form-control"
-              placeholder="Job Type"
               name="type"
-              value={job.type}
               onChange={onChangeHandler}
-              required
-            />
+            >
+              <option selected value={job.type}>
+                {job.type}
+              </option>
+              <option value="Full Time">Full Time</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Remote">Remote</option>
+              <option value="Project Based">Project Based</option>
+            </select>
           </p>
           <p>
             <input
