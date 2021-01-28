@@ -3,10 +3,13 @@ import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 import { Card } from "react-bootstrap";
 import authHeader from "../../services/auth-header";
+import { colors } from "@material-ui/core";
 
 export default function UserProfileUpdate() {
   const history = useHistory();
   const { userId } = useParams();
+  const [skillsToAdd, setskillsToAdd] = useState(["Ruby", "Python", "Java"]);
+  const [userSkills, setuserSkills] = useState([]);
 
   const [user, setUser] = useState({
     username: "",
@@ -24,6 +27,13 @@ export default function UserProfileUpdate() {
     });
   };
 
+  const getUserSkills = async () => {
+    const userResponse = axios.get(
+      `http://localhost:8080/api/v1/user/${userId}/skills`
+    );
+    setuserSkills((await userResponse).data);
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:8080/api/v1/users/${userId}`).then((res) => {
       setUser({
@@ -35,6 +45,7 @@ export default function UserProfileUpdate() {
         jobRole: res.data.jobRole,
       });
     });
+    getUserSkills();
   }, [userId]);
 
   const updateHandler = (e) => {
@@ -47,6 +58,17 @@ export default function UserProfileUpdate() {
         history.push(`/user/myProfile/${userId}`);
       })
       .catch((error) => console.log(error));
+  };
+
+  const addSkill = (e) => {
+    axios.post(
+      `http://localhost:8080/api/v1/skills/${userId}`,
+      {
+        name: e.target.value,
+        user: user,
+      },
+      { headers: authHeader() }
+    );
   };
 
   return (
@@ -103,8 +125,9 @@ export default function UserProfileUpdate() {
               onChange={onChangeHandler}
             >
               <option selected value="Software Engineer">
-                Software Engineer
+                Working as ...
               </option>
+              <option value="Software Engineer">Software Engineer</option>
               <option value="Fullstack Developer">Fullstack Developer</option>
               <option value="Frontend Developer">Frontend Developer</option>
               <option value="Backend Developer">Backend Developer</option>
@@ -112,6 +135,34 @@ export default function UserProfileUpdate() {
                 Database Administration
               </option>
               <option value="IT Architect">IT Architect</option>
+            </select>
+          </p>
+          <p>
+            <select class="form-select" name="skills" onChange={addSkill}>
+              <option selected value="Software Engineer">
+                Add skill
+              </option>
+              <option id="option" value="Ruby">
+                Ruby
+              </option>
+              <option id="option" value="Python">
+                Python
+              </option>
+              <option id="option" value="Java">
+                Java
+              </option>
+              <option id="option" value="Javascript">
+                Javascript
+              </option>
+              <option id="option" value=" Node JS">
+                Node JS
+              </option>
+              <option id="option" value="C++">
+                C++
+              </option>
+              <option id="option" value="C#">
+                C#
+              </option>
             </select>
           </p>
           <p>

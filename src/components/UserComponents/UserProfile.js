@@ -42,7 +42,7 @@ export default function UserProfile(props) {
     );
     setuser(response.data);
     const userResponse = axios.get(
-      `http://localhost:8080/api/v1/users/${userId}/skills`
+      `http://localhost:8080/api/v1/user/${userId}/skills`
     );
     setuserSkills((await userResponse).data);
   }
@@ -61,9 +61,9 @@ export default function UserProfile(props) {
               <div class="profile-usertitle-job">{user.jobRole}</div>
             </div>
 
-            {currentUser &&
-            currentUser.roles.includes("ROLE_USER" || "ROLE_COMPANY") &&
-            currentUser.id != user.id ? (
+            {(currentUser && currentUser.id !== userId) ||
+            (currentUser.roles.includes("ROLE_USER" || "ROLE_COMPANY") &&
+              currentUser.id !== userId) ? (
               <div class="profile-userbuttons">
                 <button type="button" class="btn btn-success btn-sm">
                   Follow
@@ -71,10 +71,28 @@ export default function UserProfile(props) {
                 <button type="button" class="btn btn-danger btn-sm">
                   Message
                 </button>
+                <hr />
+                <h3>Skills</h3>
+                <div style={{ margin: "5%" }}>
+                  <div class="profile-usermenu">
+                    <ul class="nav">
+                      {userSkills.map((skill) => (
+                        <li class="active">
+                          <button
+                            className="btn btn-primary"
+                            style={{ margin: "2px" }}
+                          >
+                            <i class="glyphicon glyphicon-home">{skill.name}</i>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ) : !currentUser ? (
               ""
-            ) : (
+            ) : currentUser.id === user.id ? (
               <div class="profile-userbuttons">
                 <a
                   href={`/user/profile/update/${user.id}`}
@@ -102,23 +120,37 @@ export default function UserProfile(props) {
                   Looking for job{" "}
                   {user.lookingForJob ? <CheckIcon /> : <ClearIcon />}
                 </button>
+                <h3 className="mt-3">Skills</h3>
+                <div style={{ margin: "5%" }}>
+                  <div class="profile-usermenu">
+                    <ul class="nav">
+                      {userSkills.map((skill) => (
+                        <li class="active">
+                          <button
+                            className="btn btn-primary"
+                            style={{ margin: "2px" }}
+                          >
+                            <i class="glyphicon glyphicon-home">{skill.name}</i>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div class="profile-userbuttons">
+                <button type="button" class="btn btn-success btn-sm">
+                  Follow
+                </button>
+                <button type="button" class="btn btn-danger btn-sm">
+                  Message
+                </button>
+                <button type="button" class="btn btn-primary btn-sm">
+                  Hire
+                </button>
               </div>
             )}
-
-            <div class="profile-usermenu">
-              <ul class="nav">
-                {userSkills.map((skill) => (
-                  <li class="active">
-                    <button
-                      className="btn btn-primary"
-                      style={{ margin: "2px" }}
-                    >
-                      <i class="glyphicon glyphicon-home">{skill.name}</i>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
         <div class="col-md-9">

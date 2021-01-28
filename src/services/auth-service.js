@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/v1/auth/";
 
@@ -33,12 +34,17 @@ class AuthService {
     });
   }
 
-  registerCompany(name, email, password) {
-    return axios.post(API_URL + "company-signup", {
-      name,
-      email,
-      password,
-    });
+  registerCompany(name, password, email, companyLogo) {
+    return axios.post(
+      API_URL + "company-signup",
+      {
+        name,
+        password,
+        email,
+        companyLogo,
+      },
+      { headers: authHeader() }
+    );
   }
 
   getCurrentUser() {

@@ -107,6 +107,7 @@ footer {
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: #fff;
+  height: 100%;
 }
 
 .profile-userpic img {
@@ -298,4 +299,10 @@ a:hover {
 }
 i.red {
   color: #bc0213;
+}
+
+.style1 {
+  background-color: red;
+  color: white;
+  font-size: 44px;
 }

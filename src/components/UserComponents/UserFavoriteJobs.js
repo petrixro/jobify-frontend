@@ -25,6 +25,16 @@ export default function UserFavoriteJobs(props) {
       .then((res) => setfavorites(res.data));
   }
 
+  // function deleteJob() {
+  //   axios.delete(
+  //     `http://localhost:8080/api/v1/jobs/${jobId}/addFavoriteJob/user/${currentUser.id}`,
+  //     {
+  //       headers: authHeader(),
+  //     }
+  //   );
+  //   console.log(jobId);
+  // }
+
   useEffect(() => {
     getCompanies();
   }, []);

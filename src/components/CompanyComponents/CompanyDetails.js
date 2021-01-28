@@ -20,7 +20,7 @@ const CompanyContainer = styled.div`
 `;
 
 const CompanyDetails = (props) => {
-  const [companies, setCompanies] = useState([]);
+  const [company, setCompany] = useState({});
   const [jobs, setJobs] = useState([]);
   let { user, isAuthenticated } = useAuth0();
   const [currentUser, setcurrentUser] = useState();
@@ -32,87 +32,118 @@ const CompanyDetails = (props) => {
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/companies")
-      .then((res) => setCompanies(res.data));
+      .get(`http://localhost:8080/api/v1/companies/${companyId}`)
+      .then((res) => setCompany(res.data));
 
     const user = AuthService.getCurrentUser();
     setcurrentUser(user);
   }, []);
 
+  const logOut = () => {
+    AuthService.logout();
+  };
+
   function deleteCompany() {
     axios.delete(`http://localhost:8080/api/v1/companies/${companyId}`, {
       headers: authHeader(),
     });
+    logOut();
+    props.history.push("/");
+    window.location.reload();
   }
 
   return (
-    <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-      {companies
-        .filter((company) => company.id === params.CompanyId)
-        .map((company) => (
-          <CompanyContainer className="container">
-            <div className="row">
-              <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h1 key={company.id} style={{ marginTop: "2%" }}>
-                  {company.name}
-                </h1>
-                <div
-                  dangerouslySetInnerHTML={{ __html: company.description }}
-                ></div>
-                Available jobs:
-                <JobByCompany companyId={company.id} />
-              </div>
-              <div
-                style={{ textAlign: "center", marginTop: "" }}
-                className="col-lg-6 col-md-12 mb-4 mb-md-0"
-              >
-                <CompanyImage src={company.companyLogo} alt="" />
-                <br />
-                <a href={company.websiteLink} target="_blank" rel="noreferrer">
-                  Go to {company.name} official website.
-                </a>
-                <br />
-                <br />
-                {currentUser &&
-                (currentUser.roles.includes("ROLE_ADMIN") ||
-                  currentUser.roles.includes("ROLE_COMPANY")) &&
-                currentUser.id === companyId ? (
-                  <div>
-                    <a
-                      href={`/companies/${company.id}/jobs`}
-                      className="btn btn-primary"
-                      role="button"
-                    >
-                      Add new job
-                    </a>
-                    <br />
-                    <br />
-                    <a
-                      href={`/companies/update/${company.id}`}
-                      className="btn btn-success"
-                      role="button"
-                    >
-                      Edit Company
-                    </a>
-                    <br />
-                    <br />
+    <div class="row profile">
+      <div class="col-md-3">
+        <div class="profile-sidebar ">
+          <div className="mt-5">
+            <img
+              src={company.companyLogo}
+              class="img-responsive"
+              style={{ width: "50%" }}
+              alt=""
+            />
+          </div>
 
-                    <button className="btn btn-danger" onClick={deleteCompany}>
-                      Delete Company
-                    </button>
-
-                    <br />
-                    <br />
-                    <b>Company Rating</b>
-                    <br />
-                  </div>
-                ) : (
-                  <HoverRating />
-                )}
-              </div>
+          <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+              <h3>
+                <strong>{company.name}</strong>
+              </h3>
             </div>
-          </CompanyContainer>
-        ))}
+            {/* <div class="profile-usertitle-job">{company.jobRole}</div> */}
+          </div>
+
+          {currentUser &&
+          currentUser.roles.includes("ROLE_USER" || "ROLE_COMPANY") &&
+          currentUser.id != company.id ? (
+            <div class="profile-userbuttons">
+              <HoverRating />
+            </div>
+          ) : !currentUser ? (
+            ""
+          ) : currentUser.id === companyId ? (
+            <div class="profile-userbuttons">
+              <a
+                href={`/companies/update/${companyId}`}
+                className="btn btn-success btn-sm"
+                role="button"
+              >
+                Edit company
+              </a>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                onClick={deleteCompany}
+              >
+                Delete company
+              </button>
+              <a
+                className="btn btn-primary mt-3"
+                type="button"
+                href={`/companies/${company.id}/jobs`}
+              >
+                Add new job
+              </a>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="profile-content">
+          <hr />
+          <h3>About us</h3>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+          ultricies ultricies nibh, vitae euismod turpis molestie in. Etiam
+          viverra, nisi sed iaculis accumsan, felis leo interdum mi, eu
+          dignissim magna dui quis mi. Praesent vitae mi tristique ex elementum
+          lacinia. Pellentesque habitant morbi tristique senectus et netus et
+          malesuada fames ac turpis egestas. Class aptent taciti sociosqu ad
+          litora torquent per conubia nostra, per inceptos himenaeos. Mauris
+          auctor, lacus ac varius mollis, enim sapien dignissim ex, eget
+          venenatis nibh nunc at nisl. Maecenas elit lacus, sollicitudin vel
+          euismod quis, tempus suscipit magna. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+          <hr />
+          <h3>What we do</h3>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+          ultricies ultricies nibh, vitae euismod turpis molestie in. Etiam
+          viverra, nisi sed iaculis accumsan, felis leo interdum mi, eu
+          dignissim magna dui quis mi. Praesent vitae mi tristique ex elementum
+          lacinia. Pellentesque habitant morbi tristique senectus et netus et
+          malesuada fames ac turpis egestas. Class aptent taciti sociosqu ad
+          litora torquent per conubia nostra, per inceptos himenaeos. Mauris
+          auctor, lacus ac varius mollis, enim sapien dignissim ex, eget
+          venenatis nibh nunc at nisl. Maecenas elit lacus, sollicitudin vel
+          euismod quis, tempus suscipit magna. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+          <hr />
+          <h3>Available jobs</h3>
+          <JobByCompany companyId={companyId} />
+        </div>
+      </div>
     </div>
   );
 };

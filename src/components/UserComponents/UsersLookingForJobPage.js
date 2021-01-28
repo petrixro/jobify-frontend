@@ -19,13 +19,8 @@ export default function UsersLookingForJobPage() {
       .get("http://localhost:8080/api/v1/users/lookingForJob")
       .then((res) => setUsers(res.data));
 
-    const results = users.filter(
-      (u) =>
-        u.username
-          .toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        u.experience.includes(searchTerm)
+    const results = users.filter((u) =>
+      u.username.toString().toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm]);
@@ -53,9 +48,9 @@ export default function UsersLookingForJobPage() {
           <option selected value="1">
             Beginner
           </option>
-          <option value="2">Junior</option>
-          <option value="3">Experienced</option>
-          <option value="4">Expert</option>
+          <option value="1">Junior</option>
+          <option value="2">Experienced</option>
+          <option value="3">Expert</option>
         </select>
         ;
       </form>
@@ -119,7 +114,7 @@ export default function UsersLookingForJobPage() {
   return (
     <Container>
       {search}
-      {searchByExperience}
+      {/* {searchByExperience} */}
       <section class="team">
         <div class="container">
           <div class="row">

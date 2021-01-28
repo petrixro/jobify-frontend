@@ -82,8 +82,8 @@ export default class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <h1>Login</h1>
-        <div className="card card-container">
+        <h1 className="mt-5">Login as a User or Company</h1>
+        <div className="card card-container mt-5">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
@@ -135,7 +135,7 @@ export default class Login extends Component {
             {this.state.message && (
               <div className="form-group">
                 <div className="alert alert-danger" role="alert">
-                  {this.state.message}
+                  Wrong username or password
                 </div>
               </div>
             )}

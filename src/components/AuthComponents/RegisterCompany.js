@@ -54,11 +54,14 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeImage = this.onChangeImage.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
+      image:
+        "https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/512x512/shadow/office_building.png",
       successful: false,
       message: "",
     };
@@ -67,6 +70,12 @@ export default class Register extends Component {
   onChangeUsername(e) {
     this.setState({
       username: e.target.value,
+    });
+  }
+
+  onChangeImage(e) {
+    this.setState({
+      image: e.target.value,
     });
   }
 
@@ -95,8 +104,9 @@ export default class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.registerCompany(
         this.state.username,
+        this.state.password,
         this.state.email,
-        this.state.password
+        this.state.image
       ).then(
         (response) => {
           this.setState({
@@ -119,6 +129,8 @@ export default class Register extends Component {
         }
       );
     }
+    this.props.history.push("/login");
+    window.location.reload();
   }
 
   render() {
@@ -175,16 +187,7 @@ export default class Register extends Component {
                       validations={[required, vpassword]}
                     />
                   </p>
-                  {/* <p>
-                <input
-                  type="text"
-                  id="image"
-                  name="image"
-                  className="form-control"
-                  placeholder="User image"
-                  required
-                />
-              </p> */}
+
                   <button
                     className="btn btn-lg btn-primary btn-block mt-3"
                     type="submit"

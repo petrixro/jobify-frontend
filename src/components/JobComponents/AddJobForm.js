@@ -38,6 +38,8 @@ export default function AddJobForm(props) {
       },
       { headers: authHeader() }
     );
+    props.history.push(`/company/${companyId}`);
+    window.location.reload();
   }
 
   return (

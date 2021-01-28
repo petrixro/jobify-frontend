@@ -14,7 +14,6 @@ const JobContainer = styled.div`
   text-align: left;
   padding: 1%
   border-radius: 10px;
-  background-color: #eefcff;
 `;
 
 const JobDetails = (props) => {
@@ -51,7 +50,8 @@ const JobDetails = (props) => {
     axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`, {
       headers: authHeader(),
     });
-    console.log(jobId);
+    props.history.push(`/`);
+    window.location.reload();
   }
 
   return (
@@ -59,45 +59,30 @@ const JobDetails = (props) => {
       {loadedJobs
         .filter((job) => job.id === params.JobID)
         .map((job) => (
-          <JobContainer className="container">
-            <div className="row">
-              <h1 key={job.id} style={{ marginTop: "2%" }}>
-                {job.name}
-              </h1>
-              <JobImage src={job.company.companyLogo} alt="" />
-              <small>Published on {job.publishedDate}</small>
-              <div className="col-8 col-md-12 mb-4 mb-md-0">
-                <div className="row">
-                  <div className="col" style={{ marginTop: "5%" }}>
-                    <strong>Type: </strong>
-                    <h6 style={{ color: "green", display: "inline" }}>
-                      {job.type}
-                    </h6>
+          <JobContainer>
+            <div class="row profile">
+              <div class="col-md-3">
+                <div class="profile-sidebar">
+                  <div style={{ textAlign: "center" }}>
+                    <img
+                      src={job.company.companyLogo}
+                      class="img-responsive"
+                      style={{ width: "50%" }}
+                      alt=""
+                    />
                   </div>
-                  <div className="col" style={{ marginTop: "5%" }}>
-                    <h6>
-                      <strong>Location:</strong> {job.location}
-                    </h6>
+                  <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                      <h3>
+                        <strong>{job.name}</strong>
+                      </h3>
+                    </div>
+                    {/* <div class="profile-usertitle-job">{company.jobRole}</div> */}
                   </div>
-                </div>
-                <div
-                  className="row"
-                  style={{ marginBottom: "10px", marginTop: "10px" }}
-                >
-                  <div
-                    className="col"
-                    dangerouslySetInnerHTML={{ __html: job.description }}
-                  ></div>
-                  <div
-                    style={{ textAlign: "center", marginTop: "6%" }}
-                    className="col-lg-4 col-md-5 mb-4 mb-md-0"
-                  >
-                    Job posted by <h3>{job.company.name}</h3>
-                    <br />
-                    {/* {console.log(userDetails)} */}
+                  <div class="profile-userbuttons">
                     {currentUser &&
                     currentUser.roles.includes("ROLE_COMPANY") &&
-                    job.companyId === userDetails.id ? (
+                    job.company.id === currentUser.id ? (
                       <div>
                         <button className="btn btn-danger" onClick={deleteJob}>
                           Delete job
@@ -116,26 +101,69 @@ const JobDetails = (props) => {
                       </div>
                     ) : !currentUser ? (
                       ""
-                    ) : (
-                      <div>
+                    ) : currentUser &&
+                      currentUser.roles.includes("ROLE_USER") ? (
+                      <div className="mt-5">
                         <a
                           href={job.applyLink}
                           target="_blank"
                           rel="noreferrer"
                           className="btn btn-success"
-                          role="button"
                         >
                           Apply
                         </a>
-                        <br />
-                        <buttton
-                          className="btn btn-primary mt-2"
+                        <button
                           onClick={addToFavorites}
+                          className="btn btn-primary"
                         >
                           Add to favorites
-                        </buttton>
+                        </button>
                       </div>
+                    ) : (
+                      ""
                     )}
+                    <div className="mt-5">
+                      Job posted by <h3>{job.company.name}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="profile-content" style={{ height: "100%" }}>
+                  <small>Published on {job.publishedDate}</small>
+                  <div>
+                    <div>
+                      <div style={{ marginTop: "2%" }}>
+                        <strong>Type: </strong>
+                        <h6 style={{ color: "green", display: "inline" }}>
+                          {job.type}
+                        </h6>
+                      </div>
+                      <div style={{ marginTop: "2%" }}>
+                        <h6>
+                          <strong>Location:</strong> {job.location}
+                        </h6>
+                      </div>
+                    </div>
+                    <div style={{ marginBottom: "10px", marginTop: "10px" }}>
+                      <div
+                        dangerouslySetInnerHTML={{ __html: job.description }}
+                      ></div>
+                      <hr />
+                      <div className="mt-3">
+                        <h3>Requirements</h3>
+                        <p>
+                          Cras elementum nec felis in volutpat. Nam ipsum purus,
+                          euismod ac tincidunt nec, imperdiet in nunc. Sed ac
+                          aliquet mi. Aliquam varius pretium elit, non iaculis
+                          augue porta et. Donec nibh nunc, rutrum quis mauris
+                          id, semper rutrum justo. Sed eu eros sit amet mauris
+                          finibus interdum. Nulla pharetra nisi in bibendum
+                          interdum. Etiam sed suscipit nisi. Integer fringilla
+                          semper justo, eget sollicitudin eros cursus nec.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
