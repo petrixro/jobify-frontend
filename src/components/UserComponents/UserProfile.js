@@ -88,7 +88,7 @@ export default function UserProfile(props) {
                   class="btn btn-danger btn-sm"
                   onClick={deleteUser}
                 >
-                  Delete profile
+                  Delete account
                 </button>
                 <button
                   type="button"

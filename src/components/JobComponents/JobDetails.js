@@ -102,7 +102,7 @@ const JobDetails = (props) => {
                         <br />
 
                         <a
-                          href={`/job/updateDetails/${job.id}`}
+                          href={`/jobs/updateDetails/${job.id}`}
                           className="btn btn-success"
                           role="button"
                         >

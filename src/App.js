@@ -69,6 +69,11 @@ export default function App() {
               component={UpdateCompanyDetails}
             />
             <Route
+              path="/jobs/updateDetails/:jobId"
+              exact
+              component={UpdateJobDetails}
+            />
+            <Route
               path="/companies/:companyId/jobs"
               exact
               component={AddJobForm}
