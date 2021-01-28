@@ -5,6 +5,7 @@ import JobByCompany from "../JobComponents/JobByCompany.js";
 import HoverRating from "../UtilComponents/HoverRating.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthService from "../../services/auth-service";
+import authHeader from "../../services/auth-header";
 
 const CompanyImage = styled.img`
   width: 50%;
@@ -39,7 +40,9 @@ const CompanyDetails = (props) => {
   }, []);
 
   function deleteCompany() {
-    axios.delete(`http://localhost:8080/api/v1/companies/${companyId}`);
+    axios.delete(`http://localhost:8080/api/v1/companies/${companyId}`, {
+      headers: authHeader(),
+    });
   }
 
   return (
@@ -72,7 +75,8 @@ const CompanyDetails = (props) => {
                 <br />
                 {currentUser &&
                 (currentUser.roles.includes("ROLE_ADMIN") ||
-                  currentUser.roles.includes("ROLE_COMPANY")) ? (
+                  currentUser.roles.includes("ROLE_COMPANY")) &&
+                currentUser.id === companyId ? (
                   <div>
                     <a
                       href={`/companies/${company.id}/jobs`}

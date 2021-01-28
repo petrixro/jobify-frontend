@@ -20,6 +20,10 @@ export default function UserProfile(props) {
     axios.delete(`http://localhost:8080/api/v1/users/${user.id}`);
   };
 
+  const isLookingForJob = () => {
+    axios.put(`http://localhost:8080/api/v1/users/lookingForJob/${user.id}`);
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -71,6 +75,14 @@ export default function UserProfile(props) {
                 >
                   Delete profile
                 </button>
+                {console.log(user)}
+                <input
+                  type="checkbox"
+                  id="lookingForJob"
+                  name="lookingForJob"
+                  value="true"
+                  onChange={isLookingForJob}
+                ></input>
               </div>
             )}
 
