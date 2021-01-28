@@ -18,6 +18,7 @@ import UsersLookingForJobPage from "./components/UserComponents/UsersLookingForJ
 import Login from "./components/AuthComponents/Login";
 import RegisterCompany from "./components/AuthComponents/RegisterCompany";
 import RegisterUser from "./components/AuthComponents/RegisterUser";
+import UpdateCompanyDetails from "./components/CompanyComponents/UpdateCompanyDetails";
 
 import React, { Component } from "react";
 import MyUserProfile from "./components/AuthComponents/MyUserProfile";
@@ -50,11 +51,7 @@ class App extends Component {
                 exact
                 component={CompanyDetails}
               />
-              <Route
-                path="/myCompany/:id"
-                exact
-                component={CompanyDetails}
-              />
+              <Route path="/myCompany/:id" exact component={CompanyDetails} />
               <Route path="/" exact component={Home} />
               <Route path="/profile" exact component={UserProfile} />
               <Route path="/news" exact component={News} />
@@ -62,6 +59,11 @@ class App extends Component {
               <Route
                 path="/companies/addCompany"
                 exactcomponent={AddCompanyForm}
+              />
+              <Route
+                path="/companies/update/:companyId"
+                exact
+                component={UpdateCompanyDetails}
               />
               <Route
                 path="/companies/:companyId/jobs"
@@ -81,8 +83,16 @@ class App extends Component {
                 path="/register/company"
                 component={RegisterCompany}
               />
-              <Route exact path="/user/myProfile/:userId" component={UserProfile} />
-              <Route exact path="/user/profile/:userId" component={UserProfile} />
+              <Route
+                exact
+                path="/user/myProfile/:userId"
+                component={UserProfile}
+              />
+              <Route
+                exact
+                path="/user/profile/:userId"
+                component={UserProfile}
+              />
             </Switch>
           </JobProvider>
           <Footer />

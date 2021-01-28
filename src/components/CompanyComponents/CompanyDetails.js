@@ -83,6 +83,15 @@ const CompanyDetails = (props) => {
                     </a>
                     <br />
                     <br />
+                    <a
+                      href={`/companies/update/${company.id}`}
+                      className="btn btn-success"
+                      role="button"
+                    >
+                      Edit Company
+                    </a>
+                    <br />
+                    <br />
 
                     <button className="btn btn-danger" onClick={deleteCompany}>
                       Delete Company
