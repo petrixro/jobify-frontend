@@ -35,16 +35,12 @@ class AuthService {
   }
 
   registerCompany(name, password, email, companyLogo) {
-    return axios.post(
-      API_URL + "company-signup",
-      {
-        name,
-        password,
-        email,
-        companyLogo,
-      },
-      { headers: authHeader() }
-    );
+    return axios.post(API_URL + "company-signup", {
+      name,
+      password,
+      email,
+      companyLogo,
+    });
   }
 
   getCurrentUser() {
