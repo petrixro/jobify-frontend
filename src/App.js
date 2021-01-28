@@ -69,7 +69,7 @@ export default function App() {
               component={UpdateCompanyDetails}
             />
             <Route
-              path="/jobs/updateDetails/:jobId"
+              path="/updateJobDetails/:jobId"
               exact
               component={UpdateJobDetails}
             />
@@ -97,6 +97,11 @@ export default function App() {
               exact
               path="/user/profile/update/:userId"
               component={UserProfileUpdate}
+            />
+            <Route
+              exact
+              path="/updateJobDetails/:jobId"
+              component={UpdateJobDetails}
             />
           </Switch>
         </JobProvider>

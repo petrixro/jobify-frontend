@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthService from "../../services/auth-service";
+import authHeader from "../../services/auth-header";
 
 const JobImage = styled.img`
   width: 10%;
@@ -46,7 +47,9 @@ const JobDetails = (props) => {
   // }, []);
 
   function deleteJob() {
-    axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`);
+    axios.delete(`http://localhost:8080/api/v1/jobs/${jobId}`, {
+      headers: authHeader(),
+    });
     console.log(jobId);
   }
 
@@ -102,28 +105,24 @@ const JobDetails = (props) => {
                         <br />
 
                         <a
-                          href={`/jobs/updateDetails/${job.id}`}
+                          href={`/updateJobDetails/${job.id}`}
                           className="btn btn-success"
                           role="button"
                         >
                           Edit Job Details
                         </a>
                         <br />
-                        <br />
-                        <a
-                          href={job.applyLink}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="btn btn-success"
-                          role="button"
-                        >
-                          Apply
-                        </a>
-                        <br />
-                        <br />
                       </div>
                     ) : (
-                      ""
+                      <a
+                        href={job.applyLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn btn-success"
+                        role="button"
+                      >
+                        Apply
+                      </a>
                     )}
                   </div>
                 </div>

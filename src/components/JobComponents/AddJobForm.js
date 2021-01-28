@@ -91,7 +91,7 @@ export default function AddJobForm(props) {
             required=""
           /> */}
           <select class="form-select" name="type">
-            <option selected value="Fulltime">
+            <option selected value="Full Time">
               Full Time
             </option>
             <option value="Part Time">Part Time</option>

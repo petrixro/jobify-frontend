@@ -73,7 +73,7 @@ export default function UsersLookingForJobPage() {
           <img
             src={user.image}
             class="img-responsive"
-            style={{ width: "50%" }}
+            style={{ width: "20%" }}
           />
           <ul class="text-center">
             <a href="#">

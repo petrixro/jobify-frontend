@@ -123,10 +123,14 @@ export default function UserProfile(props) {
         </div>
         <div class="col-md-9">
           <div class="profile-content">
-            Hello my name is {user.username} and I am a {user.jobRole} with{" "}
-            {user.experience}
-            {user.experience === "1" ? " year" : " years"} of experience.
+            Hello my name is <strong>{user.username}</strong> and I am a{" "}
+            <strong>{user.jobRole}</strong> with{" "}
+            <strong>
+              {user.experience}
+              {user.experience === "1" ? " year" : " years"} of experience.
+            </strong>
             <hr />
+            <h3>Studies</h3>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             ultricies ultricies nibh, vitae euismod turpis molestie in. Etiam
             viverra, nisi sed iaculis accumsan, felis leo interdum mi, eu
@@ -139,6 +143,7 @@ export default function UserProfile(props) {
             sollicitudin vel euismod quis, tempus suscipit magna. Lorem ipsum
             dolor sit amet, consectetur adipiscing elit.
             <hr />
+            <h3>About me</h3>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             ultricies ultricies nibh, vitae euismod turpis molestie in. Etiam
             viverra, nisi sed iaculis accumsan, felis leo interdum mi, eu
