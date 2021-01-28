@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 import { Button, Card } from "react-bootstrap";
+import authHeader from "../../services/auth-header";
 
 export default function UpdateCompanyDetails() {
   const history = useHistory();
@@ -37,10 +38,11 @@ export default function UpdateCompanyDetails() {
   const updateHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/api/v1/companies/${companyId}`, company)
+      .put(`http://localhost:8080/api/v1/companies/${companyId}`, company, {
+        headers: authHeader(),
+      })
       .then((response) => {
         history.push(`/company/${companyId}`);
-        console.log(response);
       })
       .catch((error) => console.log(error));
   };
