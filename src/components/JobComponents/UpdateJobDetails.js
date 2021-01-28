@@ -35,8 +35,6 @@ export default function UpdateJobDetails() {
     });
   }, [jobId]);
 
-  console.log("test");
-
   const updateHandler = (e) => {
     e.preventDefault();
     axios
