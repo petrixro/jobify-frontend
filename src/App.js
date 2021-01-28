@@ -20,6 +20,7 @@ import RegisterCompany from "./components/AuthComponents/RegisterCompany";
 import RegisterUser from "./components/AuthComponents/RegisterUser";
 import UpdateCompanyDetails from "./components/CompanyComponents/UpdateCompanyDetails";
 import UserProfileUpdate from "./components/UserComponents/UserProfileUpdate";
+import UpdateJobDetails from "./components/JobComponents/UpdateJobDetails";
 
 import React, { Component } from "react";
 import MyUserProfile from "./components/AuthComponents/MyUserProfile";
@@ -98,6 +99,11 @@ class App extends Component {
                 exact
                 path="/user/profile/update/:userId"
                 component={UserProfileUpdate}
+              />
+              <Route
+                path="/job/updateDetails/:jobId"
+                exact
+                component={UpdateJobDetails}
               />
             </Switch>
           </JobProvider>

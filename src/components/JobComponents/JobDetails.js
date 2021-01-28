@@ -91,12 +91,23 @@ const JobDetails = (props) => {
                     Job posted by <h3>{job.company.name}</h3>
                     <br />
                     {/* {console.log(userDetails)} */}
-                    {currentUser && currentUser.roles.includes("ROLE_COMPANY") &&
+                    {currentUser &&
+                    currentUser.roles.includes("ROLE_COMPANY") &&
                     job.companyId === userDetails.id ? (
                       <div>
                         <button className="btn btn-danger" onClick={deleteJob}>
                           Delete job
                         </button>
+                        <br />
+                        <br />
+
+                        <a
+                          href={`/job/updateDetails/${job.id}`}
+                          className="btn btn-success"
+                          role="button"
+                        >
+                          Edit Job Details
+                        </a>
                         <br />
                         <br />
                         <a

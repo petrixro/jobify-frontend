@@ -4,45 +4,47 @@ import axios from "axios";
 import { Card } from "react-bootstrap";
 import authHeader from "../../services/auth-header";
 
-export default function UpdateCompanyDetails() {
+export default function UpdateJobDetails() {
   const history = useHistory();
-  const { companyId } = useParams();
+  const { jobId } = useParams();
 
-  const [company, setCompany] = useState({
+  const [job, setJob] = useState({
     name: "",
-    email: "",
-    websiteLink: "",
-    companyLogo: "",
+    description: "",
+    applyLink: "",
+    type: "",
+    location: "",
   });
 
   const onChangeHandler = (e) => {
-    setCompany({
-      ...company,
+    setJob({
+      ...job,
       [e.target.name]: e.target.value,
     });
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/v1/companies/${companyId}`)
-      .then((res) => {
-        setCompany({
-          name: res.data.name,
-          email: res.data.email,
-          websiteLink: res.data.websiteLink,
-          companyLogo: res.data.companyLogo,
-        });
+    axios.get(`http://localhost:8080/api/v1/jobs/${jobId}`).then((res) => {
+      setJob({
+        name: res.data.name,
+        description: res.data.description,
+        applyLink: res.data.applyLink,
+        type: res.data.type,
+        location: res.data.location,
       });
-  }, [companyId]);
+    });
+  }, [jobId]);
+
+  console.log("test");
 
   const updateHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/api/v1/companies/${companyId}`, company, {
+      .put(`http://localhost:8080/api/v1/jobs/${jobId}`, job, {
         headers: authHeader(),
       })
       .then((response) => {
-        history.push(`/company/${companyId}`);
+        history.push(`/job/${jobId}`);
       })
       .catch((error) => console.log(error));
   };
@@ -52,14 +54,27 @@ export default function UpdateCompanyDetails() {
       style={{ marginTop: "3rem", marginLeft: "18rem", marginRight: "18rem" }}
     >
       <Card.Body>
-        <Card.Title style={{ textAlign: "center" }}>Update Company</Card.Title>
+        <Card.Title style={{ textAlign: "center" }}>
+          Update Job Details
+        </Card.Title>
         <form className="form-signin">
           <p>
             <input
               className="form-control"
-              placeholder="Company Name"
+              placeholder="Job Name"
               name="name"
-              value={company.name}
+              value={job.name}
+              onChange={onChangeHandler}
+              required
+            />
+          </p>
+          <p>
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Description"
+              name="description"
+              value={job.description}
               onChange={onChangeHandler}
               required
             />
@@ -67,9 +82,9 @@ export default function UpdateCompanyDetails() {
           <p>
             <input
               className="form-control"
-              placeholder="Email"
-              name="email"
-              value={company.email}
+              placeholder="Job's Application Link"
+              name="applyLink"
+              value={job.applyLink}
               onChange={onChangeHandler}
               required
             />
@@ -77,9 +92,9 @@ export default function UpdateCompanyDetails() {
           <p>
             <input
               className="form-control"
-              placeholder="Website Link"
-              name="websiteLink"
-              value={company.websiteLink}
+              placeholder="Job Type"
+              name="type"
+              value={job.type}
               onChange={onChangeHandler}
               required
             />
@@ -87,9 +102,9 @@ export default function UpdateCompanyDetails() {
           <p>
             <input
               className="form-control"
-              placeholder="Company Logo"
-              name="companyLogo"
-              value={company.companyLogo}
+              placeholder="Job Location"
+              name="location"
+              value={job.location}
               onChange={onChangeHandler}
               required
             />
@@ -99,7 +114,7 @@ export default function UpdateCompanyDetails() {
           </button>
           <button
             className="btn btn-danger"
-            onClick={() => history.push(`/company/${companyId}`)}
+            onClick={() => history.push(`/job/${jobId}`)}
           >
             Cancel
           </button>
