@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import authHeader from "../../services/auth-header";
 
 export default function UserProfileUpdate() {

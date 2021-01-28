@@ -42,7 +42,7 @@ class AuthService {
   }
 
   getCurrentUser() {
-    console.log(localStorage.getItem("user"));
+    // console.log(localStorage.getItem("user"));
     return JSON.parse(localStorage.getItem("user"));
   }
 }

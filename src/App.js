@@ -21,6 +21,7 @@ import RegisterUser from "./components/AuthComponents/RegisterUser";
 import UpdateCompanyDetails from "./components/CompanyComponents/UpdateCompanyDetails";
 import AuthService from "./services/auth-service";
 import UserProfileUpdate from "./components/UserComponents/UserProfileUpdate";
+import UpdateJobDetails from "./components/JobComponents/UpdateJobDetails";
 
 import React, { Component, useState } from "react";
 
