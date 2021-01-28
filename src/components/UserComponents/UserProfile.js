@@ -44,13 +44,11 @@ export default function UserProfile(props) {
     const response = await axios.get(
       `http://localhost:8080/api/v1/users/${userId}`
     );
-    // .then((res) => setuser(res.data));
     setuser(response.data);
     const userResponse = axios.get(
       `http://localhost:8080/api/v1/users/${userId}/skills`
     );
     setuserSkills((await userResponse).data);
-    // .then((res) => setuserSkills(res.data));
   }
 
   return (

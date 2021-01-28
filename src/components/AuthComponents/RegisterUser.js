@@ -54,14 +54,34 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeJobRole = this.onChangeJobRole.bind(this);
+    this.onChangeGender = this.onChangeGender.bind(this);
+    // this.setUserImage = this.setUserImage.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
+      jobRole: "",
+      gender: "",
+      image:
+        "https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png",
       successful: false,
       message: "",
     };
+  }
+
+  // setUserImage() {
+  //   this.setState({
+  //     image:
+  //       "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png",
+  //   });
+  // }
+
+  onChangeGender(e) {
+    this.setState({
+      gender: e.target.value,
+    });
   }
 
   onChangeUsername(e) {
@@ -82,6 +102,13 @@ export default class Register extends Component {
     });
   }
 
+  onChangeJobRole(e) {
+    this.setState({
+      jobRole: e.target.value,
+    });
+    console.log(this.state.jobRole);
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -96,7 +123,9 @@ export default class Register extends Component {
       AuthService.registerUser(
         this.state.username,
         this.state.email,
-        this.state.password
+        this.state.password,
+        this.state.jobRole,
+        this.state.image
       ).then(
         (response) => {
           this.setState({
@@ -176,6 +205,53 @@ export default class Register extends Component {
                       onChange={this.onChangePassword}
                       validations={[required, vpassword]}
                     />
+                  </p>
+                  <p>
+                    <select
+                      class="form-select"
+                      name="jobRole"
+                      onChange={this.onChangeJobRole}
+                    >
+                      <option selected value="Software Engineer">
+                        Software Engineer
+                      </option>
+                      <option value="Fullstack Developer">
+                        Fullstack Developer
+                      </option>
+                      <option value="Frontend Developer">
+                        Frontend Developer
+                      </option>
+                      <option value="Backend Developer">
+                        Backend Developer
+                      </option>
+                      <option value="Database Administration">
+                        Database Administration
+                      </option>
+                      <option value="IT Architect">IT Architect</option>
+                    </select>
+                  </p>
+                  <p>
+                    <select
+                      class="form-select"
+                      name="gender"
+                      onChange={this.onChangeGender}
+                    >
+                      <option selected value="Male">
+                        Male
+                      </option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </p>
+                  <hr />
+                  <p>
+                    <label for="avatar">Choose a profile picture:</label>
+                    <input
+                      className="mt-4"
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/png, image/jpeg"
+                    ></input>
                   </p>
                   {/* <p>
                 <input
