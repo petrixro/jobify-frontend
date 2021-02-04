@@ -129,7 +129,7 @@ export default class Register extends Component {
         }
       );
     }
-    this.props.history.push("/login");
+    this.props.history.push("/login", { response: "You are now registered. Please Login." }););
     window.location.reload();
   }
 
