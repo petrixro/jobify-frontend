@@ -52,6 +52,13 @@ body {
   align-items: center;
 }
 
+#login-form {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card:hover {
   background-color: white;
   box-shadow: 0px -1px 37px -7px #00b5e2;

@@ -81,46 +81,46 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <h1 className="mt-5">Login as a User or Company</h1>
-        <div className="card card-container mt-5">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
-
+        <div className="row">
+          <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <img
+              className="img-fluid"
+              src={process.env.PUBLIC_URL + "/register.jpg"}
+            />
+          </div>
+          <div className="col-lg-6 col-md-12 mb-4 mb-md-0" id="login-form">
           <Form
             onSubmit={this.handleLogin}
             ref={(c) => {
               this.form = c;
             }}
-          >
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
+          > <h2 className="form-signin-heading">Login as User or Company</h2>
+              {this.props.location.state !== undefined &&
+              <div className="form-group">
+                <div className="alert alert-success" role="alert">
+                  You are now registered. Please Login.
+                </div>
+              </div>}
               <Input
                 type="text"
                 className="form-control"
                 name="username"
+                placeholder="Username or Company Name"
                 value={this.state.username}
                 onChange={this.onChangeUsername}
                 validations={[required]}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+              /><br/>
+          
               <Input
                 type="password"
                 className="form-control"
                 name="password"
+                placeholder="Password"
                 value={this.state.password}
                 onChange={this.onChangePassword}
                 validations={[required]}
               />
-            </div>
-
-            <div className="form-group">
+              <br/>
               <button
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
@@ -130,7 +130,7 @@ export default class Login extends Component {
                 )}
                 <span>Login</span>
               </button>
-            </div>
+          
 
             {this.state.message && (
               <div className="form-group">
@@ -146,8 +146,9 @@ export default class Login extends Component {
               }}
             />
           </Form>
-        </div>
-      </div>
-    );
+          
+          </div>
+          </div>
+          );
   }
 }
