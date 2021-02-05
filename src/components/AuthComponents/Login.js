@@ -81,6 +81,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      <React.Fragment>
         <div className="row">
           <div className="col-lg-6 col-md-12 mb-4 mb-md-0">
             <img
@@ -89,38 +90,44 @@ export default class Login extends Component {
             />
           </div>
           <div className="col-lg-6 col-md-12 mb-4 mb-md-0" id="login-form">
-          <Form
-            onSubmit={this.handleLogin}
-            ref={(c) => {
-              this.form = c;
-            }}
-          > <h2 className="form-signin-heading">Login as User or Company</h2>
-              {this.props.location.state !== undefined &&
-              <div className="form-group">
-                <div className="alert alert-success" role="alert">
-                  You are now registered. Please Login.
+            <Form
+              className="form-signin"
+              onSubmit={this.handleLogin}
+              ref={(c) => {
+                this.form = c;
+              }}
+            >
+              {" "}
+              <h2 className="form-signin-heading">Login as User/Company</h2>
+              {this.props.location.state !== undefined && (
+                <div className="form-group">
+                  <div className="alert alert-success" role="alert">
+                    You are now registered. Please Login.
+                  </div>
                 </div>
-              </div>}
-              <Input
-                type="text"
-                className="form-control"
-                name="username"
-                placeholder="Username or Company Name"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                validations={[required]}
-              /><br/>
-          
-              <Input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                validations={[required]}
-              />
-              <br/>
+              )}
+              <p>
+                <Input
+                  type="text"
+                  className="form-control"
+                  name="username"
+                  placeholder="Username or Company Name"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}
+                  validations={[required]}
+                />
+              </p>
+              <p>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.onChangePassword}
+                  validations={[required]}
+                />
+              </p>
               <button
                 className="btn btn-primary btn-block"
                 disabled={this.state.loading}
@@ -130,25 +137,23 @@ export default class Login extends Component {
                 )}
                 <span>Login</span>
               </button>
-          
-
-            {this.state.message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  Wrong username or password
+              {this.state.message && (
+                <div className="form-group">
+                  <div className="alert alert-danger" role="alert">
+                    Wrong username or password
+                  </div>
                 </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={(c) => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
-          
+              )}
+              <CheckButton
+                style={{ display: "none" }}
+                ref={(c) => {
+                  this.checkBtn = c;
+                }}
+              />
+            </Form>
           </div>
-          </div>
-          );
+        </div>
+      </React.Fragment>
+    );
   }
 }

@@ -83,7 +83,7 @@ const CompanyDetails = (props) => {
           ) : !currentUser ? (
             ""
           ) : currentUser.id === companyId ? (
-            <div class="profile-userbuttons">
+            <div class="profile-userbuttons mt-5">
               <a
                 href={`/companies/update/${companyId}`}
                 className="btn btn-success btn-sm"
@@ -99,7 +99,7 @@ const CompanyDetails = (props) => {
                 Delete company
               </button>
               <a
-                className="btn btn-primary mt-3"
+                className="btn btn-primary"
                 type="button"
                 href={`/companies/${company.id}/jobs`}
               >

@@ -129,7 +129,9 @@ export default class Register extends Component {
         }
       );
     }
-    this.props.history.push("/login", { response: "You are now registered. Please Login." });
+    this.props.history.push("/login", {
+      response: "You are now registered. Please Login.",
+    });
     window.location.reload();
   }
 
@@ -143,7 +145,10 @@ export default class Register extends Component {
               src={process.env.PUBLIC_URL + "/companies.jpg"}
             />
           </div>
-          <div className="col-lg-6 col-md-12 mb-4 mb-md-0" id="register-form">
+          <div
+            className="col-lg-6 col-md-12 mb-4 mb-md-0"
+            id="register-company-form"
+          >
             <Form
               className="form-signin"
               onSubmit={this.handleRegister}
@@ -187,7 +192,6 @@ export default class Register extends Component {
                       validations={[required, vpassword]}
                     />
                   </p>
-
                   <button
                     className="btn btn-lg btn-primary btn-block mt-3"
                     type="submit"
